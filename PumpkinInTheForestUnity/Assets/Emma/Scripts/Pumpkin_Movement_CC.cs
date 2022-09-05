@@ -2,19 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pumpkin_Movement : MonoBehaviour
+public class Pumpkin_Movement_CC : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float speed = 6f;
-    public float jumpForce = 2f;
+    public float speed = 6.0f;
+    public float jumpHeight = 6.0f;
+    public float gravityValue = -9.8f;
 
+    private Vector2 moveInput;
+    private Vector3 playerJump;
+    private bool groundedPlayer;
     private bool facingLeft = true;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        controller = GetComponent<CharacterController>();
     }
 
     // Used with physics engine, can run several times per frame
@@ -33,31 +37,39 @@ public class Pumpkin_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //see Input Manager under Project Settings for string options
+        groundedPlayer = controller.isGrounded;
 
+        // Declare Variables
         float horizontal = Input.GetAxis("Horizontal") * speed;
         float vertical = Input.GetAxis("Vertical") * speed;
         bool jump = Input.GetButtonDown("Jump");
 
-        //declare new vector3 struct with x, z, y axis input
+        //Moving the character
+        Vector3 direction = new Vector3(horizontal, controller.velocity.y, vertical).normalized;
 
-        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
+        if (direction != Vector3.zero)
+        {
+            gameObject.transform.forward = direction;
+        }
 
-        //magnitude is the distance between 2 vectors (length)...normalized takes magnitude out (if two inputs)
-        
         if (direction.magnitude >= 0.1f)
         {
-            //deltaTime is the interval in sec from last frame
-
             controller.Move(direction * speed * Time.deltaTime);
         }
 
-        if (jump)
+        // Jumping
+        if (groundedPlayer && playerJump.y < 0)
         {
-            //controller.velocity = Vector2.up * jumpForce;
+            playerJump.y = 0f;
         }
 
-        controller.detectCollisions = true;
+        if (jump && groundedPlayer)
+        {
+            playerJump.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+        }
+
+        playerJump.y += gravityValue * Time.deltaTime;
+        controller.Move(playerJump * Time.deltaTime);
     }
 
     void Flip()
