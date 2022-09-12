@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Solomon/Scenes/OptionMenu.unity
     guid: 016c54457f0011b44a93b5469e2fad5c
+  - enabled: 1
+    path: Assets/Solomon/Scenes/DialogueTesting.unity
+    guid: 8ca9281acb7877f48882068a7186fdb4
   m_configObjects: {}
