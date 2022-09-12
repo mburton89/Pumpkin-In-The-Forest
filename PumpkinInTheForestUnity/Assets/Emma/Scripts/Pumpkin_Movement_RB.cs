@@ -22,7 +22,6 @@ public class Pumpkin_Movement_RB : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Rigidbody>();
-        Debug.Log(controller.gameObject.name);
     }
 
     // Used with physics engine, can run several times per frame

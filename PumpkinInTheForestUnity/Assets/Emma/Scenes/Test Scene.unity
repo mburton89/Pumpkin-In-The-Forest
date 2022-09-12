@@ -476,13 +476,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1304550046}
   - component: {fileID: 1304550045}
-  - component: {fileID: 1304550047}
   - component: {fileID: 1304550048}
   - component: {fileID: 1304550049}
   - component: {fileID: 1304550050}
   m_Layer: 0
   m_Name: Pumpkin
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -522,22 +521,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1304550047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1304550044}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 230346512a32c9043b6fe2104b7d6644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 1304550045}
-  speed: 6
-  jumpHeight: 2
-  gravityValue: -9.8
 --- !u!54 &1304550048
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -553,7 +536,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &1304550049
 MonoBehaviour:
   m_ObjectHideFlags: 0
