@@ -12,12 +12,19 @@ public class ItemPickup : MonoBehaviour
         Destroy(gameObject);
     }
 
+    void Update()
+    {
+        
+        if (Item.isCollided && Input.GetKeyDown("Pickup"))
+        {
+            Pickup();
+        }
+
+    }
+
     private void OnMouseDown()
     {
-
             Pickup();
-        
-
     }
 
 }
