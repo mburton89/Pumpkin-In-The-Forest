@@ -43,7 +43,7 @@ public class Item : ScriptableObject
     private void OnTriggerExit(Collider other)
     {
 
-        if (other.gameObject.name.Equals("Pumpkin"))
+        if (other.tag.Equals("Player"))
         {
             isCollided = false;
         }
