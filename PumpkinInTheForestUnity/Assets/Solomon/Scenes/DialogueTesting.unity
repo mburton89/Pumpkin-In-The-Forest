@@ -181,7 +181,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter your dialogue here.
+  m_text: 'Each line of dialogue must only 77 characters or fewer.
+
+    njnjnj
+
+    jknjnj
+
+    kjnj
+
+    jkn'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
