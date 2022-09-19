@@ -32,7 +32,7 @@ public class DialgueCode : MonoBehaviour
 
         for (int i = 0; i < allDialogue.Count; i++)
         {
-            dialogueToShow[i] = false;
+            dialogueToShow.Add(false);
         }
 
         dialogueToShow[0] = true;  //0 is the default line of text for the character.
@@ -68,12 +68,21 @@ public class DialgueCode : MonoBehaviour
                 }
             }
 
-            if (currentBox == 0)
+            if (currentBox == -1)
             {
                 TextBox.SetActive(false);
                 showingDialogue = false;
                 currentLine = 0;
                 currentBox = 0;
+            }
+            else
+            {
+                int startingNum = 308 * currentBox;
+                int number = (dialogueToShow.Count) > (startingNum + 308) ? 308 : (dialogueToShow.Count - startingNum);
+
+                currentDialogueShown = currentDialogue.Substring(startingNum, number);
+
+                dialogue.SetText(currentDialogueShown);
             }
         }
 

@@ -10,9 +10,13 @@ public class MainMenu : MonoBehaviour
 
     public List<Button> buttons;
     public List<string> scenesForButtons;
+    public AudioSource sound;
+
 
     public void Start()
     {
+        sound.Play();
+
         Instance = this;
 
         if (scenesForButtons.Count < buttons.Count)
