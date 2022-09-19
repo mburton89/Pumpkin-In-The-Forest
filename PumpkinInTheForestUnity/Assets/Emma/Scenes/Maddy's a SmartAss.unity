@@ -661,7 +661,6 @@ GameObject:
   m_Component:
   - component: {fileID: 555501973}
   - component: {fileID: 555501972}
-  - component: {fileID: 555501971}
   - component: {fileID: 555501970}
   m_Layer: 0
   m_Name: Twig
@@ -683,19 +682,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: a09a181c198d09a46a725f706b4330df, type: 2}
---- !u!114 &555501971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 555501969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 491eccbb7a5048741857f3fc9881dc38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 11400000, guid: a09a181c198d09a46a725f706b4330df, type: 2}
 --- !u!65 &555501972
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -704,11 +690,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555501969}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 2.1677043, y: 2.3731904, z: 0.86339206}
+  m_Center: {x: 0.13055627, y: 0.6849791, z: 0.40214643}
 --- !u!4 &555501973
 Transform:
   m_ObjectHideFlags: 0
@@ -2315,6 +2301,10 @@ PrefabInstance:
     - target: {fileID: 2357086405760054147, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
       propertyPath: m_Name
       value: Best_Pumpkin
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054147, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
       propertyPath: m_RootOrder

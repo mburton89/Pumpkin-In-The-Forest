@@ -15,21 +15,16 @@ public class ItemPickup : MonoBehaviour
     void Update()
     {
 
-        if (Item.isCollided)
-        {
-            Debug.Log("Collision");
-        }
-
-        if (Item.isCollided/* && Input.GetKeyDown(KeyCode.E)*/)
+        if (Item.isCollided && Input.GetKeyDown(KeyCode.E))
         {
             Pickup();
         }
 
     }
 
-    private void OnMouseDown()
-    {
-        Pickup();
-    }
+    //private void OnMouseDown()
+    //{
+    //    Pickup();
+    //}
 
 }
