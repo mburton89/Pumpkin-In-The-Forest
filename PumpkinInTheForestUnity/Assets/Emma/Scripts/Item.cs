@@ -35,13 +35,6 @@ public class Item : ScriptableObject
 
         if (other.tag.Equals("Player"))
         {
-            Debug.Log("COLLISION");
-            isCollided = true;
-        }
-
-        if (other.gameObject.name == "Pumpkin")
-        {
-            Debug.Log("COLLISION");
             isCollided = true;
         }
 
@@ -52,7 +45,6 @@ public class Item : ScriptableObject
 
         if (other.gameObject.name.Equals("Pumpkin"))
         {
-            Debug.Log("NO COLLISION");
             isCollided = false;
         }
 

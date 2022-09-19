@@ -6,8 +6,8 @@ public class Pumpkin_Movement_RB : MonoBehaviour
 {
     public Rigidbody controller;
 
-    public float speed = 6.0f;
-    public float jumpHeight = 6.0f;
+    public float speed = 20f;
+    public float jumpHeight = 10f;
     public float gravityValue = -9.8f;
 
     private Vector2 moveInput;
@@ -64,7 +64,7 @@ public class Pumpkin_Movement_RB : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             controller.velocity += new Vector3(0f, jumpHeight, 0f);
-            //playerJump.y += Mathf.Sqrt(jumpHeight * -2.0f * gravityValue);
+            //playerJump.y += Mathf.Sasqrt(jumpHeight * -2.0f * gravityValue);
         }
     }
 
