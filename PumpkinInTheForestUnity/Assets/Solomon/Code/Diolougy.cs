@@ -15,7 +15,7 @@ public class Diolougy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(DialogueSystem.Instance.interactKey))
         {
             DialogueSystem.Instance.showText(dialogue, false);
             DialogueSystem.Instance.showText("two person", false);

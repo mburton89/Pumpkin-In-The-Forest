@@ -21,7 +21,8 @@ public class DialogueSystem : MonoBehaviour
 
     public GameObject TextBox;
     public TextMeshProUGUI dialogue;
-    
+    public KeyCode interactKey;
+
     public int maxCharactersPerLine = 77;
     public int maxLines = 4;
 
@@ -136,9 +137,9 @@ public class DialogueSystem : MonoBehaviour
 
         }*/
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(interactKey))
         {
-            print("You pressed the key" + currentDialogue);
+            //print("You pressed the key" + currentDialogue);
             if ((showingDialogue == true) && (waitForNextFrame == false))
             {
                 if (nextBox == true)
@@ -169,7 +170,7 @@ public class DialogueSystem : MonoBehaviour
             }
             else
             {
-                print("Entered ---: " + currentDialogue);
+                //print("Entered ---: " + currentDialogue);
                 int maxChars = (maxCharactersPerLine * maxLines);
                 int startingNum = maxChars * currentBox;
                 //int startingNum = 308 * currentBox;
@@ -187,7 +188,7 @@ public class DialogueSystem : MonoBehaviour
                     if (isBacked == true)
                     {
                         tempRefresh = true;
-                        print("This thing is backed for real!!!!");
+                        //print("This thing is backed for real!!!!");
                         currentBox = -1;
                         nextBox = true;
                     }
@@ -236,7 +237,7 @@ public class DialogueSystem : MonoBehaviour
 
         if (showingDialogue == false)
         {
-            print("Working - text:::" + text);
+            //print("Working - text:::" + text);
             TextBox.SetActive(true);
             showingDialogue = true;
             //currentLine = 1;  --Used with the pre-coded dialogue
@@ -261,7 +262,7 @@ public class DialogueSystem : MonoBehaviour
         {
             if (backupCalled == false) //This if ststemen tis really not needed. It's just here for safetty.
             {
-                print("backup---::: " + text);
+                //print("backup---::: " + text);
                 if (backupDialogue == null)
                 {
                     backupDialogue = new List<string>();
