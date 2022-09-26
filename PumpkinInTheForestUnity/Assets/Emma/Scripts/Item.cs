@@ -33,8 +33,9 @@ public class Item : ScriptableObject
     private void OnTriggerEnter(Collider other)
     {
 
-        if (other.tag.Equals("Player"))
+        if (other.tag.Equals("Player") || other.gameObject.name == "Best_Pumpkin")
         {
+            Debug.Log("Collision");
             isCollided = true;
         }
 
@@ -43,7 +44,7 @@ public class Item : ScriptableObject
     private void OnTriggerExit(Collider other)
     {
 
-        if (other.tag.Equals("Player"))
+        if (other.tag.Equals("Player") || other.gameObject.name == "Best_Pumpkin")
         {
             isCollided = false;
         }

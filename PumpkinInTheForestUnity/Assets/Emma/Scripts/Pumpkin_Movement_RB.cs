@@ -54,6 +54,7 @@ public class Pumpkin_Movement_RB : MonoBehaviour
 
         if (Physics.Raycast(groundPoint.position, Vector3.down, out hit, .3f, whatIsGround))
         {
+            //Debug.Log("Grounded");
             isGrounded = true;
         }
         else
