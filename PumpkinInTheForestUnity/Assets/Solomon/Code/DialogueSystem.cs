@@ -34,12 +34,13 @@ public class DialogueSystem : MonoBehaviour
     private bool showingDialogue;             //  --Set true for the dialogue box to appear, and vice versa.
     private bool nextBox;                     //  --Tells if there will be another box with dialogue in it.
     private bool waitForNextFrame;
-    
+    private bool pauseRecieve;
+
     private string currentDialogue;           //  --The full dialogue that should be displayed.
     private string currentDialogueShown;      //  --The dialogue that is being displayer to the user in the current dialogue box.
     #endregion
 
-    #region Pre-Coded dialogue variables
+    #region Pre-Coded Dialogue Variables
     //Pre-coded dialogue variables
     //public variables
     //public List<string> allDialogue;  --This is for pre-coded dialogue.
@@ -48,6 +49,14 @@ public class DialogueSystem : MonoBehaviour
     //private int currentLine;                --This may be used to develop the dialogue even further.
     //private int numberOfLines;              --This may also be used to further develop the dialogue code.
     //private List<bool> dialogueToShow;      --This is used for pre-coded dialogue.
+    #endregion
+
+    #region Dialogue Backup Check Varaibles
+    //Dialogue Backup Check Variables
+    private List<string> backupDialogue;
+    private bool isBacked;
+    private bool backupCalled;
+
     #endregion
 
     /* The dialogue Box (Documentation)
@@ -87,7 +96,12 @@ public class DialogueSystem : MonoBehaviour
         showingDialogue = false;
         nextBox = false;
         waitForNextFrame = false;
+        pauseRecieve = false;
 
+        isBacked = false;
+        backupCalled = false;
+
+        backupDialogue = null;
 
         //Pre-Coded dialogue system
         /*  --This is for pre-coded dialogue.
@@ -102,16 +116,37 @@ public class DialogueSystem : MonoBehaviour
         */
     }
 
+
     // Update is called once per frame
     void Update()
     {
+        bool tempRefresh = false;
+        /*
+        if (currentBox == -1)
+        {
+            if (isBacked == true)
+            {
+                tempRefresh = true;
+            }
+
+            else 
+            {
+                pauseRecieve = false;
+            }
+
+        }*/
+
         if (Input.GetKeyDown(KeyCode.A))
         {
+            print("You pressed the key" + currentDialogue);
             if ((showingDialogue == true) && (waitForNextFrame == false))
             {
                 if (nextBox == true)
                 {
+                    print(currentBox);
                     currentBox++;
+                    print(currentBox);
+
                 }
                 else
                 {
@@ -121,15 +156,20 @@ public class DialogueSystem : MonoBehaviour
 
             if (currentBox == -1)
             {
-                print("This thing is working perfectly");
+                //print("This thing is working perfectly");
 
                 TextBox.SetActive(false);
                 showingDialogue = false;
                 //currentLine = 0;  --Used with the pre-coded dialoogue.
                 currentBox = 0;
+                pauseRecieve = false;
+
+
+
             }
             else
             {
+                print("Entered ---: " + currentDialogue);
                 int maxChars = (maxCharactersPerLine * maxLines);
                 int startingNum = maxChars * currentBox;
                 //int startingNum = 308 * currentBox;
@@ -143,26 +183,60 @@ public class DialogueSystem : MonoBehaviour
                 else
                 {
                     nextBox = false;
+
+                    if (isBacked == true)
+                    {
+                        tempRefresh = true;
+                        print("This thing is backed for real!!!!");
+                        currentBox = -1;
+                        nextBox = true;
+                    }
+                
                 }
 
                 currentDialogueShown = currentDialogue.Substring(startingNum, number);
 
-                print("Max Chars: " + maxChars);
-                print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
-                print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
+                //print("Max Chars: " + maxChars);
+                ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
+                //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
                 dialogue.SetText(currentDialogueShown);
-                print("Line count: " + dialogue.textInfo.lineCount);
+                //print("Line count: " + dialogue.textInfo.lineCount);
             }
 
         }
-
         waitForNextFrame = false;
+
+        if (tempRefresh == true)
+        {
+            backupCalled = true;
+            showText(backupDialogue[0]);
+            currentBox = -1;
+            backupDialogue.RemoveAt(0);
+
+            if (backupDialogue.Count < 1)
+            {
+                isBacked = false;
+                backupDialogue = null;
+            }
+
+            tempRefresh = true;
+        }
     }
 
-    public void showText(string text)
+
+    public void showText(string text, bool pause = true)
     {
+        
+
+        if (backupCalled == true)
+        {
+            showingDialogue = false;
+            backupCalled = false;
+        }
+
         if (showingDialogue == false)
         {
+            print("Working - text:::" + text);
             TextBox.SetActive(true);
             showingDialogue = true;
             //currentLine = 1;  --Used with the pre-coded dialogue
@@ -181,6 +255,29 @@ public class DialogueSystem : MonoBehaviour
                 }
             }
             */
+        }
+
+        else if ((showingDialogue == true) && (!pauseRecieve))
+        {
+            if (backupCalled == false) //This if ststemen tis really not needed. It's just here for safetty.
+            {
+                print("backup---::: " + text);
+                if (backupDialogue == null)
+                {
+                    backupDialogue = new List<string>();
+                }
+                
+                backupDialogue.Add(text);
+                isBacked = true;
+            }
+        }
+
+        if (((pauseRecieve == true) && (pause == false)))
+        { }
+
+        else
+        {
+            pauseRecieve = pause;
         }
     }
 

@@ -17,8 +17,12 @@ public class Diolougy : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-            DialogueSystem.Instance.showText(dialogue);
-            print(dialogue);
+            DialogueSystem.Instance.showText(dialogue, false);
+            DialogueSystem.Instance.showText("two person", false);
+            DialogueSystem.Instance.showText("three person", false);
+            DialogueSystem.Instance.showText("Hello World");
+            //DialogueSystem.Instance.showText("This is a new world we're living in.");
+            //print(dialogue);
         }
     }
 }
