@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1662330604060464398}
   - component: {fileID: 8318533791554829269}
+  - component: {fileID: 3665340439829607153}
   m_Layer: 0
   m_Name: tall_rock_vector
   m_TagString: Untagged
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &3665340439829607153
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5248721050273811758}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.89, y: 15.009999, z: 0.19999999}
+  m_Center: {x: 0, y: 0, z: 0}

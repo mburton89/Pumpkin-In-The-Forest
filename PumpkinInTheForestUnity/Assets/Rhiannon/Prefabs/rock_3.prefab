@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1116459468236180014}
   - component: {fileID: 8868546690901549497}
+  - component: {fileID: 4967616738771943582}
   m_Layer: 0
   m_Name: rock_3
   m_TagString: Untagged
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &4967616738771943582
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3984223093577973801}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.11, y: 9.679999, z: 0.19999999}
+  m_Center: {x: 0, y: 0, z: 0}

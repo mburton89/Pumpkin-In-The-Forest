@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5635245578451473565}
   - component: {fileID: 6010578877376504466}
+  - component: {fileID: 2574510817815341663}
   m_Layer: 0
   m_Name: green_bush
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 75cfee105a611224ca7a73e6bff1c239, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 8.13, y: 7.21}
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &2574510817815341663
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3349002073424867770}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.13, y: 7.2099996, z: 0.19999999}
+  m_Center: {x: -0.000015258789, y: 0.000036239624, z: -0.0000038146973}

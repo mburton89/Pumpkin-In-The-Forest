@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3622009773365271567}
   - component: {fileID: 7963556956862608371}
+  - component: {fileID: 6734346137410273553}
   m_Layer: 0
   m_Name: yellow_bush
   m_TagString: Untagged
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!65 &6734346137410273553
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104656003537807407}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 9.17, y: 10.129999, z: 0.20000063}
+  m_Center: {x: 0, y: 0, z: -0.0000076293945}
