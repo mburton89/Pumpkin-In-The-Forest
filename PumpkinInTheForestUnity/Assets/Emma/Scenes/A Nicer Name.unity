@@ -123,6 +123,36 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &95289223 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2357086407386903296, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+  m_PrefabInstance: {fileID: 2357086406891609393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &95289224 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2357086407386903298, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+  m_PrefabInstance: {fileID: 2357086406891609393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &95289226
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95289223}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4c8219d79b04a834b9d2b616e8de4276, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &162221786
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,6 +2182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Item: {fileID: 11400000, guid: 0226698e95095a441a3f78c3618fd6e5, type: 2}
+  isCollided: 0
 --- !u!65 &2023857947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2332,6 +2363,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Best_Pumpkin
       objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054149, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: sr
+      value: 
+      objectReference: {fileID: 95289224}
+    - target: {fileID: 2357086405760054149, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: anim
+      value: 
+      objectReference: {fileID: 95289226}
     - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2374,6 +2413,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086407386903298, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_FlipX
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
