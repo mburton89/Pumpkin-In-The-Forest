@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public MainMenu Instance;
+    //This is a singleton class.
+    public static MainMenu Instance;
 
     public List<Button> buttons;
     public List<string> scenesForButtons;
