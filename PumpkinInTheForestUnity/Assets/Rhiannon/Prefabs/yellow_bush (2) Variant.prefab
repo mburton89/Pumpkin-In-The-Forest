@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2104656003537807407, guid: 4639b55d95395e54483d1fe4b5fa5b4e, type: 3}
       propertyPath: m_Name
-      value: yellow_bush (2)
+      value: yellow_bush (2) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3622009773365271567, guid: 4639b55d95395e54483d1fe4b5fa5b4e, type: 3}
       propertyPath: m_RootOrder
@@ -37,11 +37,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3622009773365271567, guid: 4639b55d95395e54483d1fe4b5fa5b4e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9702957
+      value: 0.9848078
       objectReference: {fileID: 0}
     - target: {fileID: 3622009773365271567, guid: 4639b55d95395e54483d1fe4b5fa5b4e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.24192187
+      value: 0.17364816
       objectReference: {fileID: 0}
     - target: {fileID: 3622009773365271567, guid: 4639b55d95395e54483d1fe4b5fa5b4e, type: 3}
       propertyPath: m_LocalRotation.y
@@ -53,7 +53,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3622009773365271567, guid: 4639b55d95395e54483d1fe4b5fa5b4e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 28
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 3622009773365271567, guid: 4639b55d95395e54483d1fe4b5fa5b4e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
