@@ -18,6 +18,10 @@ public class Pumpkin_Movement_RB : MonoBehaviour
     public Transform groundPoint;
     private bool isGrounded;
 
+    public Animator anim;
+
+    public SpriteRenderer sr;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,10 +33,10 @@ public class Pumpkin_Movement_RB : MonoBehaviour
     {
         float moveInput = Input.GetAxis("Horizontal");
 
-        if (facingLeft == false && moveInput > 0)
-        {
-            Flip();
-        }
+        //if (facingLeft == false && moveInput > 0)
+        //{
+        //    Flip();
+        //}
 
 
     }
@@ -54,6 +58,7 @@ public class Pumpkin_Movement_RB : MonoBehaviour
 
         if (Physics.Raycast(groundPoint.position, Vector3.down, out hit, .3f, whatIsGround))
         {
+            //Debug.Log("Grounded");
             isGrounded = true;
         }
         else
@@ -66,13 +71,25 @@ public class Pumpkin_Movement_RB : MonoBehaviour
             controller.velocity += new Vector3(0f, jumpHeight, 0f);
             //playerJump.y += Mathf.Sasqrt(jumpHeight * -2.0f * gravityValue);
         }
+
+        anim.SetBool("onGround", isGrounded);
+
+        if (!sr.flipX && moveInput.x < 0)
+        {
+            sr.flipX = true;
+        }
+        else if (sr.flipX && moveInput.x > 0)
+        {
+            sr.flipX = false;
+        }
+
     }
 
-    void Flip()
-    {
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
-    }
+    //void Flip()
+    //{
+    //    Vector3 Scaler = transform.localScale;
+    //    Scaler.x *= -1;
+    //    transform.localScale = Scaler;
+    //}
 
 }
