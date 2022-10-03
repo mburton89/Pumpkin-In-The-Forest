@@ -17,7 +17,7 @@ public class DialogueScene : MonoBehaviour
         //print("Entered collision");
         if (collision.gameObject.GetComponent<CharacterController>())
         {
-            print("Entered collision with freidn.");
+            print("Entered collision with freind.");
             if (Input.GetKeyDown(DialogueSystem.Instance.interactKey))
             {
                 DialogueSystem.Instance.showText("Hello World");

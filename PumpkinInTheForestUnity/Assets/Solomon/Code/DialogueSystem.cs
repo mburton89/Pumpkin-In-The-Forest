@@ -35,6 +35,7 @@ public class DialogueSystem : MonoBehaviour
     private bool showingDialogue;             //  --Set true for the dialogue box to appear, and vice versa.
     private bool nextBox;                     //  --Tells if there will be another box with dialogue in it.
     private bool waitForNextFrame;
+    private bool canUpdate;
     private bool pauseRecieve;
 
     private string currentDialogue;           //  --The full dialogue that should be displayed.
@@ -97,6 +98,7 @@ public class DialogueSystem : MonoBehaviour
         showingDialogue = false;
         nextBox = false;
         waitForNextFrame = false;
+        canUpdate = false;
         pauseRecieve = false;
 
         isBacked = false;
@@ -136,38 +138,117 @@ public class DialogueSystem : MonoBehaviour
             }
 
         }*/
-
-        if (Input.GetKeyDown(interactKey))
+        if (canUpdate)
         {
-            //print("You pressed the key" + currentDialogue);
-            if ((showingDialogue == true) && (waitForNextFrame == false))
+            if (pauseRecieve && (!showingDialogue))
             {
-                if (nextBox == true)
-                {
-                    print(currentBox);
-                    currentBox++;
-                    print(currentBox);
+                pauseRecieve = false;
+            }
+            
+            if (currentBox != -1);
+            {
+                //print("Entered ---: " + currentDialogue);
+                int maxChars = (maxCharactersPerLine * maxLines);
+                int startingNum = maxChars * currentBox;
+                //int startingNum = 308 * currentBox;
 
+                int number = (currentDialogue.Length) > (startingNum + maxChars) ? maxChars : (currentDialogue.Length - startingNum);
+
+                if (number == maxChars)
+                {
+                    //print("Must continue");
+                    nextBox = true;
                 }
                 else
                 {
+                    //print("Must stop");
+                    nextBox = false;
+                }
+
+                currentDialogueShown = currentDialogue.Substring(startingNum, number);
+
+                //print("Max Chars: " + maxChars);
+                ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
+                //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
+                dialogue.SetText(currentDialogueShown);
+                //print("currentDialogueShown" + currentDialogueShown);
+                //print("Line count: " + dialogue.textInfo.lineCount);
+            }
+            
+            canUpdate = false;
+        }
+
+        if (Input.GetKeyDown(interactKey))
+        {
+            if ((!canUpdate))
+            {
+                canUpdate = true;
+            }
+
+            if ((showingDialogue == true) && (!waitForNextFrame))
+            {
+                //print("Is showing dialogue");
+                if (nextBox)
+                {
+                    //print("New Box");
+                    currentBox++;
+                }
+                else
+                {
+                    //print("Delete Box");
                     currentBox = -1;
                 }
             }
 
+            #region NotBeingUsed - MayBeDeleted
+            //The keypress only loads things into memory. Everything else shoud be handled outside of the keypress.
+            //print("You pressed the key" + currentDialogue);
+            /* if ((showingDialogue == true) && (waitForNextFrame == false))
+             {
+                 print("Hello World");
+                 //print(currentDialogue);
+                 if (nextBox == true)
+                 {
+                     print(currentBox);
+                     currentBox++;
+                     print(currentBox);
+
+                 }
+                 else
+                 {
+                     currentBox = -1;
+                 }
+             }
+            */
+            #endregion
+
             if (currentBox == -1)
-            {
-                //print("This thing is working perfectly");
+             {
+                 //print("This thing is working perfectly");
 
-                TextBox.SetActive(false);
-                showingDialogue = false;
-                //currentLine = 0;  --Used with the pre-coded dialoogue.
-                currentBox = 0;
-                pauseRecieve = false;
-
+                 TextBox.SetActive(false);
+                 showingDialogue = false;
+                 //currentLine = 0;  --Used with the pre-coded dialoogue.
+                 currentBox = 0;
 
 
+                if (isBacked == true)
+                {
+                    tempRefresh = true;
+                    //print("Temp refreshing really works");
+                    //print("This thing is backed for real!!!!");
+                    currentBox = -1;
+                    //nextBox = true;
+                }
+                else if (backupDialogue == null)
+                {
+                    print("Backup is empty");
+                    tempRefresh = false;
+                    //pauseRecieve = false;
+                }
             }
+            #region This may also be deleted.
+            /*
             else
             {
                 //print("Entered ---: " + currentDialogue);
@@ -185,14 +266,7 @@ public class DialogueSystem : MonoBehaviour
                 {
                     nextBox = false;
 
-                    if (isBacked == true)
-                    {
-                        tempRefresh = true;
-                        //print("This thing is backed for real!!!!");
-                        currentBox = -1;
-                        nextBox = true;
-                    }
-                
+
                 }
 
                 currentDialogueShown = currentDialogue.Substring(startingNum, number);
@@ -201,8 +275,10 @@ public class DialogueSystem : MonoBehaviour
                 ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
                 //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
                 dialogue.SetText(currentDialogueShown);
+                //print("currentDialogueShown" + currentDialogueShown);
                 //print("Line count: " + dialogue.textInfo.lineCount);
-            }
+            }*/
+            #endregion
 
         }
         waitForNextFrame = false;
@@ -211,16 +287,21 @@ public class DialogueSystem : MonoBehaviour
         {
             backupCalled = true;
             showText(backupDialogue[0]);
-            currentBox = -1;
+            //currentBox = -1;
+            currentBox = 0;
             backupDialogue.RemoveAt(0);
 
             if (backupDialogue.Count < 1)
             {
                 isBacked = false;
                 backupDialogue = null;
+                tempRefresh = false;
+            }
+            else
+            {
+                tempRefresh = true;
             }
 
-            tempRefresh = true;
         }
     }
 
@@ -232,10 +313,21 @@ public class DialogueSystem : MonoBehaviour
         if (backupCalled == true)
         {
             showingDialogue = false;
-            backupCalled = false;
         }
 
-        if (showingDialogue == false)
+        if ((showingDialogue == false) && (backupCalled))
+        {
+            TextBox.SetActive(true);
+            showingDialogue = true;
+            //currentLine = 1;  --Used with the pre-coded dialogue
+            currentBox = 0;
+
+            currentDialogue = text;
+            waitForNextFrame = true;
+
+            backupCalled = false;
+        }
+        else if ((showingDialogue == false) && (!pauseRecieve))
         {
             //print("Working - text:::" + text);
             TextBox.SetActive(true);
@@ -267,7 +359,7 @@ public class DialogueSystem : MonoBehaviour
                 {
                     backupDialogue = new List<string>();
                 }
-                
+
                 backupDialogue.Add(text);
                 isBacked = true;
             }
