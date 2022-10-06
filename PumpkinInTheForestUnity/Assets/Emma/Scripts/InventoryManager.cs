@@ -29,14 +29,18 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
+        foreach (Transform item in itemContent)
+        {
+            Destroy(item.gameObject);
+        }
 
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(inventoryItem, itemContent);
-            var itemName = obj.transform.Find("Item/ItemName").GetComponent<Text>();
-            var itemIcon = obj.transform.Find("Item/ItemIcon").GetComponent<Image>();
+            //var itemName  = obj.transform.Find("Item/ItemTitle").GetComponent<Text>();
+            var itemIcon = obj.transform.Find("Icon").GetComponent<Image>();
 
-            itemName.text = item.title;
+            //itemName.text = item.title;
             itemIcon.sprite = item.icon;
         }
 

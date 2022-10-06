@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc596e3adb53f2545824366d9d601a0a, type: 3}
-  m_Name: Rock
+  m_Name: Sap
   m_EditorClassIdentifier: 
-  id: 0
-  title: 
-  description: 
-  icon: {fileID: 0}
-  isCollided: 0
+  id: 2
+  title: Sap
+  description: It's kinda gooey.
+  icon: {fileID: 21300000, guid: bf87b1ce20cde0b45b76c82aa50c170b, type: 3}
