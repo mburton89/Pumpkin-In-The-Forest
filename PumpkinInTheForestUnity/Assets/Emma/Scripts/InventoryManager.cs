@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
 
     public Transform itemContent;
     public GameObject inventoryItem;
+    //public Dictionary<int, List<Item>> craftList = new Dictionary<int, List<Item>>();
 
     void Awake()
     {
@@ -45,5 +46,45 @@ public class InventoryManager : MonoBehaviour
         }
 
     }
+
+    public bool containsItem(Item item)
+    {
+        bool found = false;
+
+        for (int x = 0; x < itemSlots.length; x++)
+        {
+
+            if (itemSlots[x].Item = item)
+            {
+                found = true;
+            }
+
+        }
+
+        return found;
+    }
+
+    public int itemCount(Item item)
+    {
+        int count = 0;
+
+        for (int x = 0; x < itemSlots.length; x++)
+        {
+            
+            if (itemSlots[x].Item = item)
+            {
+                count++;
+            }
+
+        }
+
+        return count;
+    }
+
+    //private void LoadDictionary()
+    //{
+    //    craftList.Add(11, );
+    
+    //}
 
 }
