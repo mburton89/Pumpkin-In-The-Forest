@@ -51,15 +51,15 @@ public class InventoryManager : MonoBehaviour
     {
         bool found = false;
 
-        for (int x = 0; x < itemSlots.length; x++)
-        {
+        //for (int x = 0; x < itemSlots.length; x++)
+        //{
 
-            if (itemSlots[x].Item = item)
-            {
-                found = true;
-            }
+        //    if (itemSlots[x].Item = item)
+        //    {
+        //        found = true;
+        //    }
 
-        }
+        //}
 
         return found;
     }
@@ -68,15 +68,15 @@ public class InventoryManager : MonoBehaviour
     {
         int count = 0;
 
-        for (int x = 0; x < itemSlots.length; x++)
-        {
+        //for (int x = 0; x < itemSlots.length; x++)
+        //{
             
-            if (itemSlots[x].Item = item)
-            {
-                count++;
-            }
+        //    if (itemSlots[x].Item = item)
+        //    {
+        //        count++;
+        //    }
 
-        }
+        //}
 
         return count;
     }
