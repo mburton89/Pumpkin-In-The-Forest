@@ -169,12 +169,17 @@ public class DialogueSystem : MonoBehaviour
                 //print("Max Chars: " + maxChars);
                 ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
                 //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
-                title.SetText(displayTitle.ElementAt(0));
+                if (displayTitle != null)
+                {
+                    title.SetText(displayTitle.ElementAt(0));
+                }
+                
                 dialogue.SetText(currentDialogueShown);
+
                 //print("currentDialogueShown" + currentDialogueShown);
                 //print("Line count: " + dialogue.textInfo.lineCount);
             }
-            
+
             canUpdate = false;
         }
 
@@ -359,8 +364,15 @@ public class DialogueSystem : MonoBehaviour
             if (displayTitle == null){
                 displayTitle = new List<string>() { titleText };
             }
-            else { 
-                displayTitle.Add(titleText);
+            else {
+                if (titleText == " ")
+                {
+                    displayTitle.Add( displayTitle.ElementAt(displayTitle.Count - 1));   //Uses the previos title given.
+                }
+                else
+                {
+                    displayTitle.Add(titleText);
+                }
             }
 
             pauseRecieve = pause;
