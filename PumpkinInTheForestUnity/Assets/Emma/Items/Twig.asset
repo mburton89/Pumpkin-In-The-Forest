@@ -15,5 +15,4 @@ MonoBehaviour:
   id: 1
   title: Twig
   description: Tis a twig. Nothing more.
-  icon: {fileID: 21300000, guid: 9302fc66d3d5d0743ab2a7aa8dfa5340, type: 3}
-  isCollided: 0
+  icon: {fileID: 21300000, guid: b460be414d131164e8537c637b5bae9b, type: 3}

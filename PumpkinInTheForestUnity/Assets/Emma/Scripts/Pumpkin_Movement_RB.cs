@@ -12,7 +12,6 @@ public class Pumpkin_Movement_RB : MonoBehaviour
 
     private Vector2 moveInput;
     private Vector3 playerJump;
-    private bool facingLeft = true;
 
     public LayerMask whatIsGround;
     public Transform groundPoint;

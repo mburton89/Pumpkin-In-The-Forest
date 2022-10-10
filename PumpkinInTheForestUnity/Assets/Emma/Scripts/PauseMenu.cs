@@ -14,13 +14,10 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             gameIsPaused = !gameIsPaused;
-        }
-
-        if (gameIsPaused)
-        {
             ActivateMenu();
         }
-        else
+
+        if (!gameIsPaused)
         {
             DeactivateMenu();
         }
@@ -31,6 +28,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 0f;
         pauseMenuUI.SetActive(true);
+        InventoryManager.instance.ListItems();
     }
 
     public void DeactivateMenu()
