@@ -7,6 +7,7 @@
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,7 @@ public class DialogueSystem : MonoBehaviour
     public static DialogueSystem Instance;
 
     public GameObject TextBox;
+    public TextMeshProUGUI title;
     public TextMeshProUGUI dialogue;
     public KeyCode interactKey;
 
@@ -40,6 +42,8 @@ public class DialogueSystem : MonoBehaviour
 
     private string currentDialogue;           //  --The full dialogue that should be displayed.
     private string currentDialogueShown;      //  --The dialogue that is being displayer to the user in the current dialogue box.
+
+    private List<string> displayTitle;
     #endregion
 
     #region Pre-Coded Dialogue Variables
@@ -106,6 +110,13 @@ public class DialogueSystem : MonoBehaviour
 
         backupDialogue = null;
 
+        if (title)
+        {
+            title.SetText("");    //This is the default title for the textbox. The textbox title will need to be manually set.
+        }
+
+        displayTitle = null;
+
         //Pre-Coded dialogue system
         /*  --This is for pre-coded dialogue.
         
@@ -124,20 +135,7 @@ public class DialogueSystem : MonoBehaviour
     void Update()
     {
         bool tempRefresh = false;
-        /*
-        if (currentBox == -1)
-        {
-            if (isBacked == true)
-            {
-                tempRefresh = true;
-            }
 
-            else 
-            {
-                pauseRecieve = false;
-            }
-
-        }*/
         if (canUpdate)
         {
             if (pauseRecieve && (!showingDialogue))
@@ -150,6 +148,7 @@ public class DialogueSystem : MonoBehaviour
                 //print("Entered ---: " + currentDialogue);
                 int maxChars = (maxCharactersPerLine * maxLines);
                 int startingNum = maxChars * currentBox;
+                //print("startingNum:" + startingNum + "mc:" + maxChars );
                 //int startingNum = 308 * currentBox;
 
                 int number = (currentDialogue.Length) > (startingNum + maxChars) ? maxChars : (currentDialogue.Length - startingNum);
@@ -170,6 +169,7 @@ public class DialogueSystem : MonoBehaviour
                 //print("Max Chars: " + maxChars);
                 ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
                 //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
+                title.SetText(displayTitle.ElementAt(0));
                 dialogue.SetText(currentDialogueShown);
                 //print("currentDialogueShown" + currentDialogueShown);
                 //print("Line count: " + dialogue.textInfo.lineCount);
@@ -200,30 +200,8 @@ public class DialogueSystem : MonoBehaviour
                 }
             }
 
-            #region NotBeingUsed - MayBeDeleted
-            //The keypress only loads things into memory. Everything else shoud be handled outside of the keypress.
-            //print("You pressed the key" + currentDialogue);
-            /* if ((showingDialogue == true) && (waitForNextFrame == false))
-             {
-                 print("Hello World");
-                 //print(currentDialogue);
-                 if (nextBox == true)
-                 {
-                     print(currentBox);
-                     currentBox++;
-                     print(currentBox);
-
-                 }
-                 else
-                 {
-                     currentBox = -1;
-                 }
-             }
-            */
-            #endregion
-
             if (currentBox == -1)
-             {
+            {
                  //print("This thing is working perfectly");
 
                  TextBox.SetActive(false);
@@ -244,6 +222,7 @@ public class DialogueSystem : MonoBehaviour
                 {
                     print("Backup is empty");
                     tempRefresh = false;
+                    displayTitle = null;
                     //pauseRecieve = false;
                 }
             }
@@ -290,6 +269,7 @@ public class DialogueSystem : MonoBehaviour
             //currentBox = -1;
             currentBox = 0;
             backupDialogue.RemoveAt(0);
+            displayTitle.RemoveAt(0);
 
             if (backupDialogue.Count < 1)
             {
@@ -302,13 +282,17 @@ public class DialogueSystem : MonoBehaviour
                 tempRefresh = true;
             }
 
+            if (displayTitle.Count < 1)
+            {
+                displayTitle = null;
+            }
+
         }
     }
 
 
-    public void showText(string text, bool pause = true)
+    public void showText(string text, bool pause = true, string titleText = " ")
     {
-        
 
         if (backupCalled == true)
         {
@@ -366,10 +350,19 @@ public class DialogueSystem : MonoBehaviour
         }
 
         if (((pauseRecieve == true) && (pause == false)))
-        { }
+        {
+
+        }
 
         else
         {
+            if (displayTitle == null){
+                displayTitle = new List<string>() { titleText };
+            }
+            else { 
+                displayTitle.Add(titleText);
+            }
+
             pauseRecieve = pause;
         }
     }
