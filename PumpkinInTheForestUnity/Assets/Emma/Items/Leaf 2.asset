@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc596e3adb53f2545824366d9d601a0a, type: 3}
-  m_Name: Twig
+  m_Name: Leaf 2
   m_EditorClassIdentifier: 
-  id: 1
-  title: Twig
-  description: Tis a twig. Nothing more.
-  icon: {fileID: 21300000, guid: b460be414d131164e8537c637b5bae9b, type: 3}
+  id: 6
+  title: Leaf
+  description: A  leaf from a tree.
+  icon: {fileID: 21300000, guid: 412fa899fdf9f4c49806dfb84029e76e, type: 3}

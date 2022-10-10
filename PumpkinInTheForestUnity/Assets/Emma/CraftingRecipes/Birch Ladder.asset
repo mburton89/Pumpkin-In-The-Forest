@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caab5486c00dc6b46ab96c4aa1ef7682, type: 3}
+  m_Name: Birch Ladder
+  m_EditorClassIdentifier: 
+  Materials:
+  - item: {fileID: 11400000, guid: ae20ea395c045744ea7f6f7399b0de7f, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: 2ddd0c68f486b7c49865da429d3b1241, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: fd00b9eadf1370c46aa468b2a69e9237, type: 2}
+    amount: 1
+  - item: {fileID: 11400000, guid: f5a27bbc702c66b479ad78ddbc4eee53, type: 2}
+    amount: 3
+  Results:
+  - item: {fileID: 11400000, guid: 56e0f87e521fa614c920e2b7a8c4b6d6, type: 2}
+    amount: 1

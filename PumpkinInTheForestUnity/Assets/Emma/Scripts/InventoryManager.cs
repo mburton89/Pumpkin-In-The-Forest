@@ -10,6 +10,7 @@ public class InventoryManager : MonoBehaviour
 
     public Transform itemContent;
     public GameObject inventoryItem;
+    //public Dictionary<int, List<Item>> craftList = new Dictionary<int, List<Item>>();
 
     void Awake()
     {
@@ -29,17 +30,61 @@ public class InventoryManager : MonoBehaviour
 
     public void ListItems()
     {
+        foreach (Transform item in itemContent)
+        {
+            Destroy(item.gameObject);
+        }
 
         foreach (var item in Items)
         {
             GameObject obj = Instantiate(inventoryItem, itemContent);
-            var itemName = obj.transform.Find("Item/ItemName").GetComponent<Text>();
-            var itemIcon = obj.transform.Find("Item/ItemIcon").GetComponent<Image>();
+            //var itemName  = obj.transform.Find("Item/ItemTitle").GetComponent<Text>();
+            var itemIcon = obj.transform.Find("Icon").GetComponent<Image>();
 
-            itemName.text = item.title;
+            //itemName.text = item.title;
             itemIcon.sprite = item.icon;
         }
 
     }
+
+    public bool containsItem(Item item)
+    {
+        bool found = false;
+
+        for (int x = 0; x < itemSlots.length; x++)
+        {
+
+            if (itemSlots[x].Item = item)
+            {
+                found = true;
+            }
+
+        }
+
+        return found;
+    }
+
+    public int itemCount(Item item)
+    {
+        int count = 0;
+
+        for (int x = 0; x < itemSlots.length; x++)
+        {
+            
+            if (itemSlots[x].Item = item)
+            {
+                count++;
+            }
+
+        }
+
+        return count;
+    }
+
+    //private void LoadDictionary()
+    //{
+    //    craftList.Add(11, );
+    
+    //}
 
 }
