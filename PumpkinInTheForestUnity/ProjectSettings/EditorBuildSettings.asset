@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Solomon/Scenes/Main_Menu.unity
+    path: Assets/Global/Scenes/Main_Menu.unity
     guid: d3e2934747937ff49a17aace83e8259b
   - enabled: 1
     path: Assets/Solomon/Scenes/OptionMenu.unity
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Solomon/Scenes/DialogueTesting.unity
     guid: 8ca9281acb7877f48882068a7186fdb4
+  - enabled: 1
+    path: Assets/Global/Scenes/Demo_10_10_22.unity
+    guid: caa73902b832683468388258e5a07695
   m_configObjects: {}
