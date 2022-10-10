@@ -22,7 +22,7 @@ public class CraftingRecipe : ScriptableObject
 
         foreach (ItemAmount itemAmount in Materials)
         {
-            if (inventoryManager.itemContent(itemAmount.item) < itemAmount.amount)
+            if (inventoryManager.itemCount(itemAmount.item) < itemAmount.amount)
             {
                 craftable = false;
             }
