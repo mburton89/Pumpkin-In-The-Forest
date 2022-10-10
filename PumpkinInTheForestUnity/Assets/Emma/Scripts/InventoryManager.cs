@@ -47,36 +47,36 @@ public class InventoryManager : MonoBehaviour
 
     }
 
-    public bool containsItem(Item item)
+    public bool containsItem(Item searchItem)
     {
         bool found = false;
 
-        //for (int x = 0; x < itemSlots.length; x++)
-        //{
+        foreach (var item in Items)
+        {
 
-        //    if (itemSlots[x].Item = item)
-        //    {
-        //        found = true;
-        //    }
+            if (item.id == searchItem.id)
+            {
+                found = true;
+            }
 
-        //}
+        }
 
         return found;
     }
 
-    public int itemCount(Item item)
+    public int itemCount(Item searchItem)
     {
         int count = 0;
 
-        //for (int x = 0; x < itemSlots.length; x++)
-        //{
-            
-        //    if (itemSlots[x].Item = item)
-        //    {
-        //        count++;
-        //    }
+        foreach (var item in Items)
+        {
 
-        //}
+            if (item.id == searchItem.id)
+            {
+                count++;
+            }
+
+        }
 
         return count;
     }
