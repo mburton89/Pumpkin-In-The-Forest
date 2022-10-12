@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3622009773365271567}
   - component: {fileID: 7963556956862608371}
   - component: {fileID: 6734346137410273553}
+  - component: {fileID: 3548113536313991925}
   m_Layer: 0
   m_Name: yellow_bush
   m_TagString: Untagged
@@ -98,3 +99,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.17, y: 10.129999, z: 0.20000063}
   m_Center: {x: 0, y: 0, z: -0.0000076293945}
+--- !u!95 &3548113536313991925
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104656003537807407}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: deb9af985a361c143abe715af1b46d21, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
