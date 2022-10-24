@@ -206,9 +206,11 @@ public class DialogueSystem : MonoBehaviour
                     TextBox.GetComponent<Image>().sprite = tempSprite;
                 }
 
+                //print("Something wen't wrong");
                 if (displayTitle != null)
                 {
                     title.SetText(displayTitle.ElementAt(0));
+                    //print("Something wen't wrong");
                 }
                 
                 dialogue.SetText(currentDialogueShown);
@@ -377,7 +379,15 @@ public class DialogueSystem : MonoBehaviour
                 else
                 {
                     displayTitle.Add(titleText);
-                    displayImage.Add("None");  //None tells the textbox to use the default sprite.
+
+                    if (displayImage != null)
+                    {
+                        displayImage.Add("None");  //None tells the textbox to use the default sprite.
+                    }
+                    else
+                    {
+                        displayImage = new List<string>() { "None" };
+                    }
                 }
             }
 
