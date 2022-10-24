@@ -286,6 +286,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727bc616811c6d24487babd3b8382315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactKey: 93
   spriteObject: {fileID: 1991343933}
   Icon: {fileID: 21300000, guid: f9d17fb9672940d40a230e5ad403cfa3, type: 3}
 --- !u!4 &317921059 stripped
@@ -348,6 +349,10 @@ PrefabInstance:
     - target: {fileID: 1057073599755171070, guid: de476b94080068044addf2081a7cb112, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7332018186739803365, guid: de476b94080068044addf2081a7cb112, type: 3}
+      propertyPath: useInteractSystem
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8804601449346035017, guid: de476b94080068044addf2081a7cb112, type: 3}
       propertyPath: m_Name
@@ -743,6 +748,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1312952944, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2357086405760054147, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
       propertyPath: m_Name
       value: Best_Pumpkin
@@ -1296,6 +1305,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4825055025827646999, guid: a138bbde8220723429a565959b8f3475, type: 3}
   m_PrefabInstance: {fileID: 1456003426}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1168496366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8137550009452343722, guid: 7aa7fe17366dc2d419e9e28ecb0458e7, type: 3}
+  m_PrefabInstance: {fileID: 1367776474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1168496371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1168496366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa338c4ebb731d445b52bbaf3d00e09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayOnMe: 0
+  useDefaultIcon: 0
+  myInteractionIcon: {fileID: 21300000, guid: 6b9510f334fbca04e83ff10b77d4375d, type: 3}
 --- !u!1001 &1202175573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2118,7 +2147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   displayOnMe: 1
   useDefaultIcon: 1
-  myInteractionIcon: {fileID: 0}
+  myInteractionIcon: {fileID: 21300000, guid: 94fe958274032c2448eca9784a5fe2d6, type: 3}
 --- !u!1 &1759020718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,6 +2318,7 @@ PrefabInstance:
     - {fileID: 2357086405760054151, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
     - {fileID: 2357086405760054149, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
     - {fileID: 2357086405760054148, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+    - {fileID: 1312952944, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
 --- !u!1001 &1817972743
 PrefabInstance:

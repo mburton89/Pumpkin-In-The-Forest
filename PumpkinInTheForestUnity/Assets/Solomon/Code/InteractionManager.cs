@@ -4,47 +4,63 @@ using UnityEngine;
 
 public class InteractionManager : MonoBehaviour
 {
-    private Sprite defaultIcon = null;
+    public static InteractionManager Instance;
+    public KeyCode interactKey;
 
     public GameObject spriteObject;
     public Sprite Icon = null;
-    private Sprite interactsPrite;
+
+    private Sprite defaultIcon = null;
+    private SpriteRenderer interactsPrite;
+
+    private bool showingIcon;
 
     // Start is called before the first frame update
     void Start()
     {
-        spriteObject.transform.position = transform.position + new Vector3(0, 10f, 0);
+        Instance = this;
 
+        spriteObject.SetActive(false);
+        showingIcon = false;
+
+        spriteObject.transform.position = transform.position + new Vector3(0, 10f, 0);
         defaultIcon = Icon;
-        Sprite tempSprite = spriteObject.GetComponent<Sprite>();
-        tempSprite = Icon;
-        interactsPrite = spriteObject.GetComponent<Sprite>();
-        interactsPrite = Icon;
+
+        interactsPrite = spriteObject.GetComponent<SpriteRenderer>();
+        interactsPrite.sprite = Icon;
     }
 
     private void OnCollisionExit(Collision collision)
     {
         spriteObject.SetActive(false);
+        showingIcon = false;
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        spriteObject.SetActive(false);
+        showingIcon = false;
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Interaction>())
         {
             GameObject other = collision.gameObject;
             Interaction otherInteract = other.GetComponent<Interaction>();
-
+            
             if (otherInteract.GetUseDefaultIcon() == false)
             {
-                interactsPrite = otherInteract.GetObjectIcon();
+                print("This should be working");
+                interactsPrite.sprite = otherInteract.GetObjectIcon();
             }
             else
             {
-                interactsPrite = defaultIcon;
+                interactsPrite.sprite = defaultIcon;
             }
 
             if (otherInteract.GetDisplayOnMe() == false)
             {
+                showingIcon = true;
                 spriteObject.transform.position = transform.position + new Vector3(0, 5f, 0);
             }
             else
@@ -56,9 +72,44 @@ public class InteractionManager : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.GetComponent<Interaction>())
+        {
+            GameObject other = collision.gameObject;
+            Interaction otherInteract = other.GetComponent<Interaction>();
+
+            if (otherInteract.GetUseDefaultIcon() == false)
+            {
+                print("This should be working");
+                interactsPrite.sprite = otherInteract.GetObjectIcon();
+            }
+            else
+            {
+                interactsPrite.sprite = defaultIcon;
+            }
+
+            if (otherInteract.GetDisplayOnMe() == false)
+            {
+                showingIcon = true;
+                spriteObject.transform.position = transform.position + new Vector3(0, 5f, 0);
+            }
+            else
+            {
+                spriteObject.transform.position = other.transform.position + new Vector3(0, 5f, 0);
+            }
+
+            showingIcon = true;
+            spriteObject.SetActive(true);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        
+        if (showingIcon == true)
+        {
+            spriteObject.transform.position = transform.position + new Vector3(0, 5f, 0);
+        }
     }
 }

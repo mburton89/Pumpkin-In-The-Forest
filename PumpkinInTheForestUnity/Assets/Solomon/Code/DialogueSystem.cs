@@ -23,6 +23,9 @@ public class DialogueSystem : MonoBehaviour
     public GameObject TextBox;
     public TextMeshProUGUI title;
     public TextMeshProUGUI dialogue;
+
+    public bool useInteractSystem;
+
     public KeyCode interactKey;
 
     public int maxCharactersPerLine = 77;
@@ -42,6 +45,7 @@ public class DialogueSystem : MonoBehaviour
     private bool waitForNextFrame;
     private bool canUpdate;
     private bool pauseRecieve;
+    private bool interactKeySet;
 
     private string currentDialogue;           //  --The full dialogue that should be displayed.
     private string currentDialogueShown;      //  --The dialogue that is being displayer to the user in the current dialogue box.
@@ -119,6 +123,11 @@ public class DialogueSystem : MonoBehaviour
             title.SetText("");    //This is the default title for the textbox. The textbox title will need to be manually set.
         }
 
+        if (useInteractSystem)
+            interactKeySet = false;
+        else
+            interactKeySet = true;
+
         displayTitle = null;
         displayImage = null;
 
@@ -139,6 +148,12 @@ public class DialogueSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((useInteractSystem) && (interactKeySet == false))
+        {
+            interactKey = InteractionManager.Instance.interactKey;
+            interactKeySet = true;
+        }
+
         bool tempRefresh = false;
 
         if (canUpdate)
