@@ -28,6 +28,9 @@ public class DialogueSystem : MonoBehaviour
     public int maxCharactersPerLine = 77;
     public int maxLines = 4;
 
+    public Sprite textBoxSpriteDefault;
+    public Sprite textBoxSpriteCharacterIcon;
+    public Dictionary<string, Sprite> characterIcons = null;
 
     //Private Variables
     private const int maxCharsPerLine = 77;
@@ -44,6 +47,7 @@ public class DialogueSystem : MonoBehaviour
     private string currentDialogueShown;      //  --The dialogue that is being displayer to the user in the current dialogue box.
 
     private List<string> displayTitle;
+    private List<string> displayImage;
     #endregion
 
     #region Pre-Coded Dialogue Variables
@@ -116,6 +120,7 @@ public class DialogueSystem : MonoBehaviour
         }
 
         displayTitle = null;
+        displayImage = null;
 
         //Pre-Coded dialogue system
         /*  --This is for pre-coded dialogue.
@@ -143,7 +148,7 @@ public class DialogueSystem : MonoBehaviour
                 pauseRecieve = false;
             }
             
-            if (currentBox != -1);
+            if (currentBox != -1)
             {
                 //print("Entered ---: " + currentDialogue);
                 int maxChars = (maxCharactersPerLine * maxLines);
@@ -169,9 +174,43 @@ public class DialogueSystem : MonoBehaviour
                 //print("Max Chars: " + maxChars);
                 ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
                 //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
+                
+                if ((displayImage != null))
+                {
+                    Sprite tempSprite = textBoxSpriteDefault;
+                    bool set = false;
+
+                    switch (displayImage.ElementAt(0))
+                    {
+                        case "None":
+                            tempSprite = textBoxSpriteDefault;
+                            set = true;
+                            break;
+
+                        case "Default":
+                            tempSprite = textBoxSpriteCharacterIcon;
+                            set = true;
+                            break;
+
+                        default:
+                            tempSprite = textBoxSpriteCharacterIcon;
+                            set = false;
+                            break;
+                    }
+
+                    if ((set == false) && (characterIcons != null))
+                    {
+                        print("In progress");
+                    }
+
+                    TextBox.GetComponent<Image>().sprite = tempSprite;
+                }
+
+                //print("Something wen't wrong");
                 if (displayTitle != null)
                 {
                     title.SetText(displayTitle.ElementAt(0));
+                    //print("Something wen't wrong");
                 }
                 
                 dialogue.SetText(currentDialogueShown);
@@ -185,7 +224,7 @@ public class DialogueSystem : MonoBehaviour
 
         if (Input.GetKeyDown(interactKey))
         {
-            if ((!canUpdate))
+            if ((!canUpdate) )
             {
                 canUpdate = true;
             }
@@ -231,38 +270,6 @@ public class DialogueSystem : MonoBehaviour
                     //pauseRecieve = false;
                 }
             }
-            #region This may also be deleted.
-            /*
-            else
-            {
-                //print("Entered ---: " + currentDialogue);
-                int maxChars = (maxCharactersPerLine * maxLines);
-                int startingNum = maxChars * currentBox;
-                //int startingNum = 308 * currentBox;
-
-                int number = (currentDialogue.Length) > (startingNum + maxChars) ? maxChars : (currentDialogue.Length - startingNum);
-
-                if (number == maxChars)
-                {
-                    nextBox = true;
-                }
-                else
-                {
-                    nextBox = false;
-
-
-                }
-
-                currentDialogueShown = currentDialogue.Substring(startingNum, number);
-
-                //print("Max Chars: " + maxChars);
-                ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
-                //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
-                dialogue.SetText(currentDialogueShown);
-                //print("currentDialogueShown" + currentDialogueShown);
-                //print("Line count: " + dialogue.textInfo.lineCount);
-            }*/
-            #endregion
 
         }
         waitForNextFrame = false;
@@ -372,11 +379,115 @@ public class DialogueSystem : MonoBehaviour
                 else
                 {
                     displayTitle.Add(titleText);
+
+                    if (displayImage != null)
+                    {
+                        displayImage.Add("None");  //None tells the textbox to use the default sprite.
+                    }
+                    else
+                    {
+                        displayImage = new List<string>() { "None" };
+                    }
                 }
             }
 
             pauseRecieve = pause;
         }
     }
+
+    public void showTextWithImage(string text, bool pause = true, string titleText = " ", string characterImage = "Default")
+    {
+        if (backupCalled == true)
+        {
+            showingDialogue = false;
+        }
+
+        if ((showingDialogue == false) && (backupCalled))
+        {
+            TextBox.SetActive(true);
+            showingDialogue = true;
+            //currentLine = 1;  --Used with the pre-coded dialogue
+            currentBox = 0;
+
+            currentDialogue = text;
+            waitForNextFrame = true;
+
+            backupCalled = false;
+        }
+        else if ((showingDialogue == false) && (!pauseRecieve))
+        {
+            //print("Working - text:::" + text);
+            TextBox.SetActive(true);
+            showingDialogue = true;
+            //currentLine = 1;  --Used with the pre-coded dialogue
+            currentBox = 0;
+
+            currentDialogue = text;
+            waitForNextFrame = true;
+
+            /*  --This is for pre-coded dialogue.
+            for (int i = 0; i < dialogueToShow.Count; i++)
+            {
+                if (dialogueToShow[i] == true)
+                {
+                    currentDialogue = allDialogue[i];
+                    break;
+                }
+            }
+            */
+        }
+
+        else if ((showingDialogue == true) && (!pauseRecieve))
+        {
+            if (backupCalled == false) //This if ststemen tis really not needed. It's just here for safetty.
+            {
+                //print("backup---::: " + text);
+                if (backupDialogue == null)
+                {
+                    backupDialogue = new List<string>();
+                }
+
+                backupDialogue.Add(text);
+                isBacked = true;
+            }
+        }
+
+        if (((pauseRecieve == true) && (pause == false)))
+        {
+
+        }
+
+        else
+        {
+            if (displayTitle == null)
+            {
+                displayTitle = new List<string>() { titleText };
+            }
+            else
+            {
+                if (titleText == " ")
+                {
+                    displayTitle.Add(displayTitle.ElementAt(displayTitle.Count - 1));   //Uses the previos title given.
+                }
+                else
+                {
+                    displayTitle.Add(titleText);
+
+                }
+            }
+
+            if (displayImage == null)
+            {
+                displayImage = new List<string>() { characterImage };
+            }
+            else
+            {
+                displayImage.Add(characterImage);
+            }
+
+            pauseRecieve = pause;
+        }
+    }
+    //The default parameter in characterImage tells to use the character icon dialogue with no character.
 
 }
