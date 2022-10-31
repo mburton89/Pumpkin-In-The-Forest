@@ -330,6 +330,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7384994727173678054, guid: de476b94080068044addf2081a7cb112, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8804601449346035017, guid: de476b94080068044addf2081a7cb112, type: 3}
       propertyPath: m_Name
       value: TextBox
@@ -794,7 +798,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &971360052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2068,6 +2072,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4215569639020713943, guid: 867b9b82d186e82429045778793a0a31, type: 3}
   m_PrefabInstance: {fileID: 1637317067}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1711560070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2357086405760054147, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+  m_PrefabInstance: {fileID: 1816754594}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1711560071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1711560070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617f8af53f87cce4099d2d5983f6bd4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1759020718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2174,6 +2195,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4825055025827646999, guid: a138bbde8220723429a565959b8f3475, type: 3}
   m_PrefabInstance: {fileID: 453639726}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1816754594
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2357086405760054147, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_Name
+      value: Pumpkin's friend
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054151, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: jumpHeight
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 107.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 62.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2357086405760054153, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2357086405760054150, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+    - {fileID: 2357086405760054151, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+    - {fileID: 2357086405760054149, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+    - {fileID: 2357086405760054148, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
 --- !u!1001 &1817972743
 PrefabInstance:
   m_ObjectHideFlags: 0
