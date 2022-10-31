@@ -459,10 +459,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7332018186739803365, guid: de476b94080068044addf2081a7cb112, type: 3}
-      propertyPath: useInteractSystem
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8804601449346035017, guid: de476b94080068044addf2081a7cb112, type: 3}
       propertyPath: m_Name
       value: TextBox

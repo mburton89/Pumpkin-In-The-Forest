@@ -721,6 +721,7 @@ MonoBehaviour:
   TextBox: {fileID: 7384994727173678054}
   title: {fileID: 858076245}
   dialogue: {fileID: 4810507351858035687}
+  useInteractSystem: 1
   interactKey: 8
   maxCharactersPerLine: 33
   maxLines: 2

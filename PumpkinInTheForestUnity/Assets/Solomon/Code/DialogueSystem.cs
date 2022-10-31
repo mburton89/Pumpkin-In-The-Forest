@@ -46,6 +46,8 @@ public class DialogueSystem : MonoBehaviour
     private bool canUpdate;
     private bool pauseRecieve;
     private bool interactKeySet;
+    private bool waitForFinish;
+    private bool isDialogueFinished;
 
     private string currentDialogue;           //  --The full dialogue that should be displayed.
     private string currentDialogueShown;      //  --The dialogue that is being displayer to the user in the current dialogue box.
@@ -115,6 +117,8 @@ public class DialogueSystem : MonoBehaviour
 
         isBacked = false;
         backupCalled = false;
+        waitForFinish = false;
+        isDialogueFinished = false;
 
         backupDialogue = null;
 
@@ -158,6 +162,7 @@ public class DialogueSystem : MonoBehaviour
 
         if (canUpdate)
         {
+            print("currentBox:" + currentBox);
             if (pauseRecieve && (!showingDialogue))
             {
                 pauseRecieve = false;
@@ -165,12 +170,14 @@ public class DialogueSystem : MonoBehaviour
             
             if (currentBox != -1)
             {
+                if (currentDialogue != null)
+                {
                 //print("Entered ---: " + currentDialogue);
                 int maxChars = (maxCharactersPerLine * maxLines);
                 int startingNum = maxChars * currentBox;
                 //print("startingNum:" + startingNum + "mc:" + maxChars );
                 //int startingNum = 308 * currentBox;
-
+                print("Dialogue in que" + currentDialogue.Length);
                 int number = (currentDialogue.Length) > (startingNum + maxChars) ? maxChars : (currentDialogue.Length - startingNum);
 
                 if (number == maxChars)
@@ -186,39 +193,40 @@ public class DialogueSystem : MonoBehaviour
 
                 currentDialogueShown = currentDialogue.Substring(startingNum, number);
 
-                //print("Max Chars: " + maxChars);
-                ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
-                //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
-                
-                if ((displayImage != null))
-                {
-                    Sprite tempSprite = textBoxSpriteDefault;
-                    bool set = false;
+                    //print("Max Chars: " + maxChars);
+                    ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
+                    //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
 
-                    switch (displayImage.ElementAt(0))
+                    if ((displayImage != null))
                     {
-                        case "None":
-                            tempSprite = textBoxSpriteDefault;
-                            set = true;
-                            break;
+                        Sprite tempSprite = textBoxSpriteDefault;
+                        bool set = false;
 
-                        case "Default":
-                            tempSprite = textBoxSpriteCharacterIcon;
-                            set = true;
-                            break;
+                        switch (displayImage.ElementAt(0))
+                        {
+                            case "None":
+                                tempSprite = textBoxSpriteDefault;
+                                set = true;
+                                break;
 
-                        default:
-                            tempSprite = textBoxSpriteCharacterIcon;
-                            set = false;
-                            break;
+                            case "Default":
+                                tempSprite = textBoxSpriteCharacterIcon;
+                                set = true;
+                                break;
+
+                            default:
+                                tempSprite = textBoxSpriteCharacterIcon;
+                                set = false;
+                                break;
+                        }
+
+                        if ((set == false) && (characterIcons != null))
+                        {
+                            print("In progress");
+                        }
+
+                        TextBox.GetComponent<Image>().sprite = tempSprite;
                     }
-
-                    if ((set == false) && (characterIcons != null))
-                    {
-                        print("In progress");
-                    }
-
-                    TextBox.GetComponent<Image>().sprite = tempSprite;
                 }
 
                 //print("Something wen't wrong");
@@ -239,7 +247,7 @@ public class DialogueSystem : MonoBehaviour
 
         if (Input.GetKeyDown(interactKey))
         {
-            if ((!canUpdate) )
+            if ((!canUpdate))
             {
                 canUpdate = true;
             }
@@ -251,6 +259,7 @@ public class DialogueSystem : MonoBehaviour
                 {
                     //print("New Box");
                     currentBox++;
+                    isDialogueFinished = false;
                 }
                 else
                 {
@@ -276,6 +285,7 @@ public class DialogueSystem : MonoBehaviour
                     //print("This thing is backed for real!!!!");
                     currentBox = -1;
                     //nextBox = true;
+                    isDialogueFinished = false;
                 }
                 else if (backupDialogue == null)
                 {
@@ -283,6 +293,7 @@ public class DialogueSystem : MonoBehaviour
                     tempRefresh = false;
                     displayTitle = null;
                     //pauseRecieve = false;
+                    isDialogueFinished = true;
                 }
             }
 
@@ -504,5 +515,15 @@ public class DialogueSystem : MonoBehaviour
         }
     }
     //The default parameter in characterImage tells to use the character icon dialogue with no character.
+
+    public bool isFinished()
+    {
+        return isDialogueFinished;
+    }
+
+    public void waitForDialogue(bool wait)
+    {
+        waitForFinish = wait;
+    }
 
 }

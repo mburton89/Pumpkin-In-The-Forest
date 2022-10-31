@@ -16,7 +16,6 @@ public class CameraFollowPlayer : MonoBehaviour
     {
         if (player != null)
         {
-            print("Processing");
             transform.position = new Vector3(player.position.x + 1.4f, player.position.y + 15.9f, player.position.z - 30.52f);
         }
     }
