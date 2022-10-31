@@ -330,6 +330,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7332018186739803365, guid: de476b94080068044addf2081a7cb112, type: 3}
+      propertyPath: textBoxSpriteDefault
+      value: 
+      objectReference: {fileID: 21300000, guid: db4dc2e41749b254ebdbc2986a1a7265, type: 3}
+    - target: {fileID: 7332018186739803365, guid: de476b94080068044addf2081a7cb112, type: 3}
+      propertyPath: textBoxSpriteCharacterIcon
+      value: 
+      objectReference: {fileID: 21300000, guid: ba8bcc4557ed1e544a6cc61f697cc0a3, type: 3}
     - target: {fileID: 7384994727173678054, guid: de476b94080068044addf2081a7cb112, type: 3}
       propertyPath: m_IsActive
       value: 1
