@@ -14,7 +14,7 @@ public class lesley_squirrel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        print("Colliding: " + colliding);
+        //print("Colliding: " + colliding);
         if (colliding && Input.GetKeyDown(DialogueSystem.Instance.interactKey))
         {
             DialogueSystem.Instance.showText("Hello Lesley!", false, "Pumpkin");

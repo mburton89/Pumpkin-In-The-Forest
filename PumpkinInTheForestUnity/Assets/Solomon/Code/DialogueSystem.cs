@@ -48,6 +48,7 @@ public class DialogueSystem : MonoBehaviour
     private bool interactKeySet;
     private bool waitForFinish;
     private bool isDialogueFinished;
+    private bool simulateButtonPress;
 
     private string currentDialogue;           //  --The full dialogue that should be displayed.
     private string currentDialogueShown;      //  --The dialogue that is being displayer to the user in the current dialogue box.
@@ -119,6 +120,7 @@ public class DialogueSystem : MonoBehaviour
         backupCalled = false;
         waitForFinish = false;
         isDialogueFinished = false;
+        simulateButtonPress = false;
 
         backupDialogue = null;
 
@@ -245,8 +247,10 @@ public class DialogueSystem : MonoBehaviour
             canUpdate = false;
         }
 
-        if (Input.GetKeyDown(interactKey))
+        if (Input.GetKeyDown(interactKey) || simulateButtonPress)
         {
+            simulateButtonPress = false;
+
             if ((!canUpdate))
             {
                 canUpdate = true;
@@ -331,6 +335,7 @@ public class DialogueSystem : MonoBehaviour
 
     public void showText(string text, bool pause = true, string titleText = " ")
     {
+        isDialogueFinished = false;
 
         if (backupCalled == true)
         {
@@ -423,6 +428,8 @@ public class DialogueSystem : MonoBehaviour
 
     public void showTextWithImage(string text, bool pause = true, string titleText = " ", string characterImage = "Default")
     {
+        isDialogueFinished = false;
+
         if (backupCalled == true)
         {
             showingDialogue = false;
@@ -524,6 +531,12 @@ public class DialogueSystem : MonoBehaviour
     public void waitForDialogue(bool wait)
     {
         waitForFinish = wait;
+    }
+
+    //This function is used to simulate a button press when text is autamatically displayed to the screen. (Ex. In a cutscene.)
+    public void simulate()
+    {
+        simulateButtonPress = true;
     }
 
 }

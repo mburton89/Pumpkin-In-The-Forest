@@ -14,6 +14,8 @@ public class InteractionManager : MonoBehaviour
     private SpriteRenderer interactsPrite;
 
     private bool showingIcon;
+    private bool showingIconOnMe;
+    private Transform otherTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class InteractionManager : MonoBehaviour
 
         spriteObject.SetActive(false);
         showingIcon = false;
+        showingIconOnMe = false;
 
         spriteObject.transform.position = transform.position + new Vector3(0, 10f, 0);
         defaultIcon = Icon;
@@ -47,7 +50,8 @@ public class InteractionManager : MonoBehaviour
         {
             GameObject other = collision.gameObject;
             Interaction otherInteract = other.GetComponent<Interaction>();
-            
+            otherTransform = other.transform;
+
             if (otherInteract.GetUseDefaultIcon() == false)
             {
                 print("This should be working");
@@ -65,7 +69,8 @@ public class InteractionManager : MonoBehaviour
             }
             else
             {
-                spriteObject.transform.position = other.transform.position + new Vector3(0, 5f, 0);
+                showingIcon = false;
+                spriteObject.transform.position = otherTransform.position + new Vector3(0, 5f, 0);
             }
 
             spriteObject.SetActive(true);
@@ -78,6 +83,7 @@ public class InteractionManager : MonoBehaviour
         {
             GameObject other = collision.gameObject;
             Interaction otherInteract = other.GetComponent<Interaction>();
+            otherTransform = other.transform;
 
             if (otherInteract.GetUseDefaultIcon() == false)
             {
@@ -96,10 +102,10 @@ public class InteractionManager : MonoBehaviour
             }
             else
             {
-                spriteObject.transform.position = other.transform.position + new Vector3(0, 5f, 0);
+                showingIcon = false;
+                spriteObject.transform.position = otherTransform.position + new Vector3(0, 5f, 0);
             }
 
-            showingIcon = true;
             spriteObject.SetActive(true);
         }
     }
@@ -107,9 +113,9 @@ public class InteractionManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (showingIcon == true)
+        if (otherTransform != null)
         {
-            spriteObject.transform.position = transform.position + new Vector3(0, 5f, 0);
+            spriteObject.transform.position = showingIcon ? transform.position + new Vector3(0, 5f, 0) : otherTransform.position + new Vector3(0, 5f, 0);
         }
     }
 }
