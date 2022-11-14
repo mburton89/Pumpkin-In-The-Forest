@@ -4,56 +4,25 @@ using UnityEngine;
 
 public class PlatformAttach : MonoBehaviour
 {
-    public Rigidbody targetJoint;
-    public FixedJoint joint;
 
-    void Start()
+    private void OnCollisionEnter(Collision other)
     {
-        joint = gameObject.GetComponent<FixedJoint>();
-    }
-
-    void Update()
-    {
-        joint = gameObject.GetComponent<FixedJoint>();
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject.tag.Equals("Player"))
+        if (other.gameObject.tag == "Player")
         {
-            Debug.Log("hit!");
-            targetJoint = collision.rigidbody;
-            Debug.Log(targetJoint);
-            joint.connectedBody = targetJoint;
-            Debug.Log(joint.connectedBody);
+            other.transform.parent = this.transform;
+            Debug.Log("On");
         }
-
     }
 
-    //public GameObject Player;
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            other.transform.parent = null;
+            Debug.Log("Off");
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        Player.transform.parent = this.transform;
-    //        Player.GetComponent<Rigidbody>().useGravity = false;
-    //        Debug.Log("On");
-    //    }
-    //}
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Player")
-    //    {
-    //        Player.transform.parent = null;
-    //        Player.GetComponent<Rigidbody>().useGravity = true;
-    //        Debug.Log("Off");
-
-    //    }
-    //}
+        }
+    }
 
 
 }

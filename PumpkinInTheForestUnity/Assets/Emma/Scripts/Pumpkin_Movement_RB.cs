@@ -5,10 +5,6 @@ using UnityEngine;
 public class Pumpkin_Movement_RB : MonoBehaviour
 {
     public Rigidbody controller;
-    public Rigidbody targetJoint;
-    public Rigidbody emptyBody;
-
-    public FixedJoint joint;
 
     public float speed = 20f;
     public float jumpHeight = 10f;
@@ -29,7 +25,7 @@ public class Pumpkin_Movement_RB : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Rigidbody>();
-        joint = GetComponent<FixedJoint>();
+        //joint = GetComponent<FixedJoint>();
     }
 
     // Used with physics engine, can run several times per frame
@@ -77,26 +73,6 @@ public class Pumpkin_Movement_RB : MonoBehaviour
         {
             sr.flipX = false;
         }
-
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject.tag.Equals("Moving Platform"))
-        {
-            Debug.Log("hit!");
-            targetJoint = collision.rigidbody;
-            Debug.Log(targetJoint);
-            joint.connectedBody = targetJoint;
-            Debug.Log(joint.connectedBody);
-        }
-
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
 
     }
 
