@@ -18,27 +18,27 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 10
+    value: 1000
   threshold:
     overrideState: 1
     value: 50
   softKnee:
-    overrideState: 0
+    overrideState: 1
     value: 0.26
   clamp:
-    overrideState: 0
+    overrideState: 1
     value: 65472
   diffusion:
-    overrideState: 0
+    overrideState: 1
     value: 7
   anamorphicRatio:
-    overrideState: 0
+    overrideState: 1
     value: 0
   color:
     overrideState: 1
-    value: {r: 0, g: 0.055861674, b: 0.7169812, a: 1}
+    value: {r: 1, g: 0.7783019, b: 0.7783019, a: 1}
   fastMode:
-    overrideState: 0
+    overrideState: 1
     value: 0
   dirtTexture:
     overrideState: 0
@@ -47,55 +47,6 @@ MonoBehaviour:
   dirtIntensity:
     overrideState: 0
     value: 0
---- !u!114 &-2016653816173353838
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
-  m_Name: AmbientOcclusion
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  mode:
-    overrideState: 1
-    value: 1
-  intensity:
-    overrideState: 1
-    value: 1
-  color:
-    overrideState: 1
-    value: {r: 0.45702916, g: 0.5943396, b: 0.17661978, a: 1}
-  ambientOnly:
-    overrideState: 0
-    value: 1
-  noiseFilterTolerance:
-    overrideState: 0
-    value: 0
-  blurTolerance:
-    overrideState: 0
-    value: -4.6
-  upsampleTolerance:
-    overrideState: 0
-    value: -12
-  thicknessModifier:
-    overrideState: 1
-    value: 1
-  directLightingStrength:
-    overrideState: 0
-    value: 0
-  radius:
-    overrideState: 0
-    value: 0.25
-  quality:
-    overrideState: 0
-    value: 2
 --- !u!114 &-1681104506712024206
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -111,19 +62,19 @@ MonoBehaviour:
   active: 0
   enabled:
     overrideState: 1
-    value: 1
+    value: 0
   mode:
     overrideState: 1
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.29411766, g: 0.21700567, b: 0.20784314, a: 1}
+    value: {r: 0.8867924, g: 0.25516194, b: 0.25516194, a: 1}
   center:
     overrideState: 1
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.5
+    value: 1
   smoothness:
     overrideState: 1
     value: 0.2
@@ -155,4 +106,3 @@ MonoBehaviour:
   settings:
   - {fileID: -2400094996193820713}
   - {fileID: -1681104506712024206}
-  - {fileID: -2016653816173353838}
