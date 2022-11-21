@@ -14,7 +14,6 @@ public class InteractionManager : MonoBehaviour
     private SpriteRenderer interactsPrite;
 
     private bool showingIcon;
-    private bool showingIconOnMe;
     private Transform otherTransform;
 
     // Start is called before the first frame update
@@ -24,7 +23,6 @@ public class InteractionManager : MonoBehaviour
 
         spriteObject.SetActive(false);
         showingIcon = false;
-        showingIconOnMe = false;
 
         spriteObject.transform.position = transform.position + new Vector3(0, 10f, 0);
         defaultIcon = Icon;

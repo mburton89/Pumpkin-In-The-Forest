@@ -318,7 +318,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6006501}
   - component: {fileID: 6006504}
-  - component: {fileID: 6006503}
   - component: {fileID: 6006502}
   m_Layer: 0
   m_Name: OverTheLog-DialogueTrigger
@@ -355,21 +354,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6006503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6006500}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa338c4ebb731d445b52bbaf3d00e09c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayOnMe: 1
-  useDefaultIcon: 1
-  myInteractionIcon: {fileID: 0}
 --- !u!114 &6006504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3864,7 +3848,6 @@ GameObject:
   m_Component:
   - component: {fileID: 291599607}
   - component: {fileID: 291599606}
-  - component: {fileID: 291599605}
   - component: {fileID: 291599604}
   m_Layer: 0
   m_Name: DialogueTriggerBox
@@ -3886,21 +3869,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &291599605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291599603}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa338c4ebb731d445b52bbaf3d00e09c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  displayOnMe: 1
-  useDefaultIcon: 1
-  myInteractionIcon: {fileID: 0}
 --- !u!114 &291599606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5589,7 +5557,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7332018186739803365, guid: de476b94080068044addf2081a7cb112, type: 3}
       propertyPath: maxCharactersPerLine
-      value: 38
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 7384994727173678054, guid: de476b94080068044addf2081a7cb112, type: 3}
       propertyPath: m_IsActive
