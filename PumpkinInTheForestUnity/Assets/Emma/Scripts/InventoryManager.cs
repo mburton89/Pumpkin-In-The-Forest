@@ -6,7 +6,7 @@ using UnityEngine;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
-    public List<Item> Items = new List<Item>();
+    public List<Item> ItemsList = new List<Item>();
 
     public Transform itemContent;
     public GameObject inventoryItem;
@@ -17,25 +17,25 @@ public class InventoryManager : MonoBehaviour
         instance = this;
     }
 
-    // Update is called once per frame
     public void Add(Item item)
     {
-        Items.Add(item);
+        ItemsList.Add(item);
     }
 
     public void Remove(Item item)
     {
-        Items.Remove(item);
+        ItemsList.Remove(item);
     }
 
     public void ListItems()
     {
+        //destroys previous instances so no duplicates
         foreach (Transform item in itemContent)
         {
             Destroy(item.gameObject);
         }
 
-        foreach (var item in Items)
+        foreach (var item in ItemsList)
         {
             GameObject obj = Instantiate(inventoryItem, itemContent);
             //var itemName  = obj.transform.Find("Item/ItemTitle").GetComponent<Text>();
@@ -51,7 +51,7 @@ public class InventoryManager : MonoBehaviour
     {
         bool found = false;
 
-        foreach (var item in Items)
+        foreach (var item in ItemsList)
         {
 
             if (item.id == searchItem.id)
@@ -68,7 +68,7 @@ public class InventoryManager : MonoBehaviour
     {
         int count = 0;
 
-        foreach (var item in Items)
+        foreach (var item in ItemsList)
         {
 
             if (item.id == searchItem.id)
@@ -80,11 +80,5 @@ public class InventoryManager : MonoBehaviour
 
         return count;
     }
-
-    //private void LoadDictionary()
-    //{
-    //    craftList.Add(11, );
-    
-    //}
 
 }
