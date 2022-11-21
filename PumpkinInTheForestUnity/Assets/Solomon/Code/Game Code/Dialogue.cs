@@ -7,6 +7,8 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
     public static Dialogue Instance;
     //This allows the user to choose between dialogue in the script, or heir custom dialogue.
 
+    private ThreeDDictionary<string, string, string> EditorDialogue_Dialogue_Name_Unknown;    //This custom datatype should allow dilaogue to be edited in the unity editor outside of visual studio.
+
     //This dictionary is not required, it is optional to edit dialogue straight from the editor.
     [SerializeField]
     public Dictionary<int, List<string>> dialogue;

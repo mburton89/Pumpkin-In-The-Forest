@@ -595,6 +595,7 @@ public class DialogueSystem : MonoBehaviour
         tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = false;
         tempPlayer.GetComponent<CapsuleCollider>().enabled = false;
         tempPlayer.GetComponent<Rigidbody>().useGravity = false;
+        tempPlayer.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
         print("This shuld be another success.");
         pumpkinIsPaused = true;
     }
