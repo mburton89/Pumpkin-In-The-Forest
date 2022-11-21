@@ -7,6 +7,7 @@ using UnityEngine;
 [Serializable]
 public class ThreeDDictionary<T, B, S>
 {
+    /*
     public List<T> key;
     public List<B> Value1;
     public List<S> Value2;
@@ -43,7 +44,9 @@ public class ThreeDDictionary<T, B, S>
     }
 
     ThreeDDictionary<T, B, S> At(T key)
-    { }
+    {
+        
+    }
 
-
+    */
 }

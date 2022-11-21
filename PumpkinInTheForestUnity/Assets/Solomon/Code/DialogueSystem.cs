@@ -76,6 +76,8 @@ public class DialogueSystem : MonoBehaviour
 
     #endregion
 
+    private bool pumpkinIsPaused = false;
+    private bool activatePumpkinWhenFinished = true;
     /* The dialogue Box (Documentation)
      * The dialogue box variables are used to decide which and how many characters are being displayed to the screen at the current moment.
      * There is only one dialogue box as of right now.
@@ -148,12 +150,16 @@ public class DialogueSystem : MonoBehaviour
         dialogueToShow = new List<bool>();
         dialogueToShow[0] = true;  //0 is the default line of text for the character.
         */
+
+        //Pumpkin in the forest specific code.
+        pumpkinIsPaused = false;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+
         if ((useInteractSystem) && (interactKeySet == false))
         {
             interactKey = InteractionManager.Instance.interactKey;
@@ -330,11 +336,33 @@ public class DialogueSystem : MonoBehaviour
             }
 
         }
+        else
+        {
+            //Pumpkin in the forest specific code.
+            if (isFinished() && activatePumpkinWhenFinished && pumpkinIsPaused)
+            {
+                activatePumpkin();
+                print("Pumpkin was activated.");
+            }
+        }
+
+        
     }
+
 
 
     public void showText(string text, bool pause = true, string titleText = " ")
     {
+        //pumpkin in the forest specific code.
+        if (!pumpkinIsPaused)
+        {
+            isDialogueFinished = false;
+            deactivatePumpkin();
+            print("Pumpkin was de-activated.");
+
+        }
+        //
+
         isDialogueFinished = false;
 
         if (backupCalled == true)
@@ -428,6 +456,17 @@ public class DialogueSystem : MonoBehaviour
 
     public void showTextWithImage(string text, bool pause = true, string titleText = " ", string characterImage = "Default")
     {
+        //pumpkin in the forest specific code.
+        if (!pumpkinIsPaused)
+        {
+            isDialogueFinished = false;
+            deactivatePumpkin();
+            print("Pumpkin was de-activated.");
+
+        }
+        //
+
+
         isDialogueFinished = false;
 
         if (backupCalled == true)
@@ -539,4 +578,35 @@ public class DialogueSystem : MonoBehaviour
         simulateButtonPress = true;
     }
 
+    //Pumpkin in the forest specific code.
+    public void activatePumpkin()
+    {
+        GameObject tempPlayer = FindObjectOfType<Pumpkin_Movement_RB>().gameObject;
+        tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = true;
+        tempPlayer.GetComponent<CapsuleCollider>().enabled = true;
+        tempPlayer.GetComponent<Rigidbody>().useGravity = true;
+        print("This should be a success.");
+        pumpkinIsPaused = false;
+    }
+
+    public void deactivatePumpkin()
+    {
+        GameObject tempPlayer = FindObjectOfType<Pumpkin_Movement_RB>().gameObject;
+        tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = false;
+        tempPlayer.GetComponent<CapsuleCollider>().enabled = false;
+        tempPlayer.GetComponent<Rigidbody>().useGravity = false;
+        print("This shuld be another success.");
+        pumpkinIsPaused = true;
+    }
+
+    public void setActivatePumpkinWhenFinished(bool setting = true)
+    {
+        activatePumpkinWhenFinished = setting;
+    }
+
+    public void showTextPlus(string text, bool pause = true, string titleText = " ", bool activatePlayer = true)
+    {
+        setActivatePumpkinWhenFinished(activatePlayer);
+        showText(text, pause, titleText);
+    }
 }

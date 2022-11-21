@@ -17,15 +17,7 @@ public class lesley_squirrel : MonoBehaviour
         //print("Colliding: " + colliding);
         if (colliding && Input.GetKeyDown(DialogueSystem.Instance.interactKey))
         {
-            DialogueSystem.Instance.showText("Hello Lesley!", false, "Pumpkin");
-            DialogueSystem.Instance.showText("Hello Pumpkin!", false, "Lesley");
-            DialogueSystem.Instance.showText("This seems to be working correctly to me.", false, "Pumpkin");
-
-            if (DialogueSystem.Instance.isFinished())    //yes this is possible. Dynamic NPC dialogue.
-                DialogueSystem.Instance.showText("It seems like this already happened. hmm...", false, "Pumpkin");
-
-            DialogueSystem.Instance.showText("Yep, well, Bye", false, "Lesley");
-            DialogueSystem.Instance.showText("Bye", true, "Pumpkin");
+            Dialogue.Instance.CallDialogue(5, false);
 
         }
     }

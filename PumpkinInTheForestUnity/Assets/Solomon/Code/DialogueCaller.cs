@@ -11,6 +11,7 @@ public class DialogueCaller : MonoBehaviour
     public string CollidersTag;
     public bool destroyAfterFirstUse;
     public bool RemoveWhenDestroyed;
+    //Add this in once dialogue can be edited from the unity editor.
 
     [HideInInspector] public int subIndex;  //This may be used if the dialogue needs to be better categorized. It is not being used as of right now.
 
@@ -20,6 +21,7 @@ public class DialogueCaller : MonoBehaviour
     void Start()
     {
         used = false;
+        //Dialogue.Instance.UseDefaultDialogue(true);  //This should be removed once dialogue can be edited in the unity editor.
     }
 
     // Update is called once per frame

@@ -6,7 +6,6 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
 {
     public static Dialogue Instance;
     //This allows the user to choose between dialogue in the script, or heir custom dialogue.
-    public static bool useScriptDialogue;
 
     //This dictionary is not required, it is optional to edit dialogue straight from the editor.
     [SerializeField]
@@ -38,32 +37,20 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
     void Update()
     {
     }
-    
+
+    public void UseDefaultDialogue(bool use = true)
+    {
+    }
+
     //Wrapper functions to access dialogue may be added to streamline the experience.  Subindexs allow for alternative text.
     public void CallDialogue(int index, bool trigger = false, int subIndex = 0, bool defaultText = true)
     {
+        DialogueSystem.Instance.setActivatePumpkinWhenFinished(true);
+
         if (trigger)
         {
             DialogueSystem.Instance.simulate();
         }
-
-        if ((!useScriptDialogue || !defaultText) && (index < dialogue.Count))
-        {
-            for (int i = 0; i < dialogue.Count; i++)
-            {
-                if (i == (dialogue.Count - 1))
-                {
-                    DialogueSystem.Instance.showText(dialogue[index][i], true);
-                }
-                else
-                {
-                    DialogueSystem.Instance.showText(dialogue[index][i], false);
-                }
-            }
-        }
-        else
-        {
-
             switch (index)
             {
                 case 0:
@@ -91,7 +78,29 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
                 case 2:    //Pumpkin finds the right amount of sap for the ladder.
                     DialogueSystem.Instance.showText("Excellent! Now all I have to do is combine the twigs and the tree sap. That should allow me to make it over the branch.", true, Pumpkin);
                     break;
+
+                case 3:   //Pumpkin makes it over the log.
+                    DialogueSystem.Instance.deactivatePumpkin();
+                    DialogueSystem.Instance.showText("No turning back now. I hope I can find someone who can help me get home.", true, Pumpkin);
+                    break;
+
+                case 4:   //Pumpkin meets Lesley
+                    DialogueSystem.Instance.showText("H-Hello? Can you help me? My name is Pumpkin and I am terribly lost!", false, Pumpkin);
+                    DialogueSystem.Instance.showText("Well hello there! Name's Lesley! I was born in these woods and can usually get around them just fine.", false, Lesley);
+                    DialogueSystem.Instance.showText("Aren't you that baby squirrel from the Huey drey on the edge of the forest?", false, Lesley);
+                    DialogueSystem.Instance.showText("Wll I'm not sure what a drey or a Huey is, but I live in a burrow on the edge of the forest with two tall creatures. Can you help me get back home?", false, Pumpkin);
+                    DialogueSystem.Instance.showText("Well sure! I know the way! But first we gotta get back to the Talkabout Tree  and speak with Bradley. From there we can get you back to your burrow.", false, Lesley);
+                    DialogueSystem.Instance.showText("R-really? Thank you! Let's get going!", false, Pumpkin);
+                    DialogueSystem.Instance.showText("Therein lies the issue. Seems the Order of Enigma has set up some kind of trap to keep critters from getting through to the Talkabout Tree.", false, Lesley);
+                    DialogueSystem.Instance.showText("They used a bunch of vines and such to block the way with logs. Gonna need someone to hit the pullies in order to bring them down.", true, Lesley);
+
+                break;
+
+                case 5:   //Lesley's dialogue while the pumpkin searches for the slingshot materials.
+                    DialogueSystem.Instance.showText("What we need is a slingshot. To make one, you will need to gather 2 twigs, 2 vines, and 2 sap.", false, Lesley);
+                    DialogueSystem.Instance.showText("Okay, I can do that! I can find twigs on the ground and sap in the trees. Do you know where I can find vines?", false, Pumpkin);
+                    DialogueSystem.Instance.showText("Vines can also be found in the trees and on some of the larger rocks.", true, Lesley);
+                    break;
             }
-        }
     }
 }

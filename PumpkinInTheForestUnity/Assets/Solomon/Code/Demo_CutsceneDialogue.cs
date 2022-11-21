@@ -6,11 +6,13 @@ using UnityEngine;
 public class Demo_CutsceneDialogue : MonoBehaviour
 {
     bool startPlayer;
+    bool showHiddenObjects;
 
     // Start is called before the first frame update
     void Start()
     {
         startPlayer = false;
+        showHiddenObjects = false;
     }
 
     // Update is called once per frame
@@ -20,6 +22,12 @@ public class Demo_CutsceneDialogue : MonoBehaviour
         {
             TimelineController.Instance.playTimeline();
             startPlayer = false;
+
+            if (showHiddenObjects)
+            {
+                showHiddenObjects = false;  //This is done so this control structure only runs once when it is completed.
+                DisableObject.Instance.enableObject();
+            }
         }
     }
 
@@ -33,7 +41,7 @@ public class Demo_CutsceneDialogue : MonoBehaviour
                 DisableObject.Instance.disableObject();
                 DialogueSystem.Instance.simulate();
                 DialogueSystem.Instance.showText("Hello? I-Is anybody there? Hello?", false, "Pumpkin");
-                DialogueSystem.Instance.showText("Where am I? How did I get here?", true, "Pumpkin");
+                DialogueSystem.Instance.showTextPlus("Where am I? How did I get here?", true, "Pumpkin", false);
                 startPlayer = true;
                 break;
 
@@ -43,12 +51,14 @@ public class Demo_CutsceneDialogue : MonoBehaviour
                 DialogueSystem.Instance.simulate();
                 DialogueSystem.Instance.showText("I need to find something to help me get over this branch.", false, "Pumpkin");
                 DialogueSystem.Instance.showText("...", false, "Pumpkin");
-                DialogueSystem.Instance.showText("I should be able to push that rock over to the branch and use it to climb over it!", true, "Pumpkin");
+                DialogueSystem.Instance.showTextPlus("I should be able to push that rock over to the branch and use it to climb over it!", true, "Pumpkin", false);
                 startPlayer = true;
+                showHiddenObjects = true;
+
                 break;
 
             case 3:
-                DialogueSystem.Instance.showText("I need some sort of ramp or ladder to make it all the way over this branch. I will need some twigs and some tree sap to make one. I'm sure I can find both of those items somewhere in this clearing.");
+                DialogueSystem.Instance.showTextPlus("I need some sort of ramp or ladder to make it all the way over this branch. I will need some twigs and some tree sap to make one. I'm sure I can find both of those items somewhere in this clearing.", true, "Pumpkin", true);
                 break;
 
         }
