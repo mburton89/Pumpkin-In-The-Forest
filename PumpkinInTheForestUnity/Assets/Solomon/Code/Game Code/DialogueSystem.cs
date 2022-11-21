@@ -23,6 +23,9 @@ public class DialogueSystem : MonoBehaviour
     public GameObject TextBox;
     public TextMeshProUGUI title;
     public TextMeshProUGUI dialogue;
+
+    public bool useInteractSystem;
+
     public KeyCode interactKey;
 
     public int maxCharactersPerLine = 77;
@@ -42,6 +45,10 @@ public class DialogueSystem : MonoBehaviour
     private bool waitForNextFrame;
     private bool canUpdate;
     private bool pauseRecieve;
+    private bool interactKeySet;
+    private bool waitForFinish;
+    private bool isDialogueFinished;
+    private bool simulateButtonPress;
 
     private string currentDialogue;           //  --The full dialogue that should be displayed.
     private string currentDialogueShown;      //  --The dialogue that is being displayer to the user in the current dialogue box.
@@ -69,6 +76,8 @@ public class DialogueSystem : MonoBehaviour
 
     #endregion
 
+    private bool pumpkinIsPaused = false;
+    private bool activatePumpkinWhenFinished = true;
     /* The dialogue Box (Documentation)
      * The dialogue box variables are used to decide which and how many characters are being displayed to the screen at the current moment.
      * There is only one dialogue box as of right now.
@@ -111,6 +120,9 @@ public class DialogueSystem : MonoBehaviour
 
         isBacked = false;
         backupCalled = false;
+        waitForFinish = false;
+        isDialogueFinished = false;
+        simulateButtonPress = false;
 
         backupDialogue = null;
 
@@ -118,6 +130,11 @@ public class DialogueSystem : MonoBehaviour
         {
             title.SetText("");    //This is the default title for the textbox. The textbox title will need to be manually set.
         }
+
+        if (useInteractSystem)
+            interactKeySet = false;
+        else
+            interactKeySet = true;
 
         displayTitle = null;
         displayImage = null;
@@ -133,16 +150,27 @@ public class DialogueSystem : MonoBehaviour
         dialogueToShow = new List<bool>();
         dialogueToShow[0] = true;  //0 is the default line of text for the character.
         */
+
+        //Pumpkin in the forest specific code.
+        pumpkinIsPaused = false;
     }
 
 
     // Update is called once per frame
     void Update()
     {
+
+        if ((useInteractSystem) && (interactKeySet == false))
+        {
+            interactKey = InteractionManager.Instance.interactKey;
+            interactKeySet = true;
+        }
+
         bool tempRefresh = false;
 
         if (canUpdate)
         {
+            print("currentBox:" + currentBox);
             if (pauseRecieve && (!showingDialogue))
             {
                 pauseRecieve = false;
@@ -150,12 +178,14 @@ public class DialogueSystem : MonoBehaviour
             
             if (currentBox != -1)
             {
+                if (currentDialogue != null)
+                {
                 //print("Entered ---: " + currentDialogue);
                 int maxChars = (maxCharactersPerLine * maxLines);
                 int startingNum = maxChars * currentBox;
                 //print("startingNum:" + startingNum + "mc:" + maxChars );
                 //int startingNum = 308 * currentBox;
-
+                print("Dialogue in que" + currentDialogue.Length);
                 int number = (currentDialogue.Length) > (startingNum + maxChars) ? maxChars : (currentDialogue.Length - startingNum);
 
                 if (number == maxChars)
@@ -171,39 +201,40 @@ public class DialogueSystem : MonoBehaviour
 
                 currentDialogueShown = currentDialogue.Substring(startingNum, number);
 
-                //print("Max Chars: " + maxChars);
-                ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
-                //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
-                
-                if ((displayImage != null))
-                {
-                    Sprite tempSprite = textBoxSpriteDefault;
-                    bool set = false;
+                    //print("Max Chars: " + maxChars);
+                    ///print("Current Dialogue:" + currentDialogue + ",,,Length: " + currentDialogue.Length);
+                    //print("Current DialogueShown:" + currentDialogueShown + ",,,Length: " + currentDialogueShown.Length);
 
-                    switch (displayImage.ElementAt(0))
+                    if ((displayImage != null))
                     {
-                        case "None":
-                            tempSprite = textBoxSpriteDefault;
-                            set = true;
-                            break;
+                        Sprite tempSprite = textBoxSpriteDefault;
+                        bool set = false;
 
-                        case "Default":
-                            tempSprite = textBoxSpriteCharacterIcon;
-                            set = true;
-                            break;
+                        switch (displayImage.ElementAt(0))
+                        {
+                            case "None":
+                                tempSprite = textBoxSpriteDefault;
+                                set = true;
+                                break;
 
-                        default:
-                            tempSprite = textBoxSpriteCharacterIcon;
-                            set = false;
-                            break;
+                            case "Default":
+                                tempSprite = textBoxSpriteCharacterIcon;
+                                set = true;
+                                break;
+
+                            default:
+                                tempSprite = textBoxSpriteCharacterIcon;
+                                set = false;
+                                break;
+                        }
+
+                        if ((set == false) && (characterIcons != null))
+                        {
+                            print("In progress");
+                        }
+
+                        TextBox.GetComponent<Image>().sprite = tempSprite;
                     }
-
-                    if ((set == false) && (characterIcons != null))
-                    {
-                        print("In progress");
-                    }
-
-                    TextBox.GetComponent<Image>().sprite = tempSprite;
                 }
 
                 //print("Something wen't wrong");
@@ -222,9 +253,11 @@ public class DialogueSystem : MonoBehaviour
             canUpdate = false;
         }
 
-        if (Input.GetKeyDown(interactKey))
+        if (Input.GetKeyDown(interactKey) || simulateButtonPress)
         {
-            if ((!canUpdate) )
+            simulateButtonPress = false;
+
+            if ((!canUpdate))
             {
                 canUpdate = true;
             }
@@ -236,6 +269,7 @@ public class DialogueSystem : MonoBehaviour
                 {
                     //print("New Box");
                     currentBox++;
+                    isDialogueFinished = false;
                 }
                 else
                 {
@@ -261,6 +295,7 @@ public class DialogueSystem : MonoBehaviour
                     //print("This thing is backed for real!!!!");
                     currentBox = -1;
                     //nextBox = true;
+                    isDialogueFinished = false;
                 }
                 else if (backupDialogue == null)
                 {
@@ -268,6 +303,7 @@ public class DialogueSystem : MonoBehaviour
                     tempRefresh = false;
                     displayTitle = null;
                     //pauseRecieve = false;
+                    isDialogueFinished = true;
                 }
             }
 
@@ -300,11 +336,34 @@ public class DialogueSystem : MonoBehaviour
             }
 
         }
+        else
+        {
+            //Pumpkin in the forest specific code.
+            if (isFinished() && activatePumpkinWhenFinished && pumpkinIsPaused)
+            {
+                activatePumpkin();
+                print("Pumpkin was activated.");
+            }
+        }
+
+        
     }
+
 
 
     public void showText(string text, bool pause = true, string titleText = " ")
     {
+        //pumpkin in the forest specific code.
+        if (!pumpkinIsPaused)
+        {
+            isDialogueFinished = false;
+            deactivatePumpkin();
+            print("Pumpkin was de-activated.");
+
+        }
+        //
+
+        isDialogueFinished = false;
 
         if (backupCalled == true)
         {
@@ -397,6 +456,19 @@ public class DialogueSystem : MonoBehaviour
 
     public void showTextWithImage(string text, bool pause = true, string titleText = " ", string characterImage = "Default")
     {
+        //pumpkin in the forest specific code.
+        if (!pumpkinIsPaused)
+        {
+            isDialogueFinished = false;
+            deactivatePumpkin();
+            print("Pumpkin was de-activated.");
+
+        }
+        //
+
+
+        isDialogueFinished = false;
+
         if (backupCalled == true)
         {
             showingDialogue = false;
@@ -490,4 +562,52 @@ public class DialogueSystem : MonoBehaviour
     }
     //The default parameter in characterImage tells to use the character icon dialogue with no character.
 
+    public bool isFinished()
+    {
+        return isDialogueFinished;
+    }
+
+    public void waitForDialogue(bool wait)
+    {
+        waitForFinish = wait;
+    }
+
+    //This function is used to simulate a button press when text is autamatically displayed to the screen. (Ex. In a cutscene.)
+    public void simulate()
+    {
+        simulateButtonPress = true;
+    }
+
+    //Pumpkin in the forest specific code.
+    public void activatePumpkin()
+    {
+        GameObject tempPlayer = FindObjectOfType<Pumpkin_Movement_RB>().gameObject;
+        tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = true;
+        tempPlayer.GetComponent<CapsuleCollider>().enabled = true;
+        tempPlayer.GetComponent<Rigidbody>().useGravity = true;
+        print("This should be a success.");
+        pumpkinIsPaused = false;
+    }
+
+    public void deactivatePumpkin()
+    {
+        GameObject tempPlayer = FindObjectOfType<Pumpkin_Movement_RB>().gameObject;
+        tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = false;
+        tempPlayer.GetComponent<CapsuleCollider>().enabled = false;
+        tempPlayer.GetComponent<Rigidbody>().useGravity = false;
+        tempPlayer.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
+        print("This shuld be another success.");
+        pumpkinIsPaused = true;
+    }
+
+    public void setActivatePumpkinWhenFinished(bool setting = true)
+    {
+        activatePumpkinWhenFinished = setting;
+    }
+
+    public void showTextPlus(string text, bool pause = true, string titleText = " ", bool activatePlayer = true)
+    {
+        setActivatePumpkinWhenFinished(activatePlayer);
+        showText(text, pause, titleText);
+    }
 }
