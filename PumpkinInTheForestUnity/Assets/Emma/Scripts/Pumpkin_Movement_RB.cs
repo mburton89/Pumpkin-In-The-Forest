@@ -25,19 +25,13 @@ public class Pumpkin_Movement_RB : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Rigidbody>();
+        //joint = GetComponent<FixedJoint>();
     }
 
     // Used with physics engine, can run several times per frame
     void FixedUpdate()
     {
         float moveInput = Input.GetAxis("Horizontal");
-
-        //if (facingLeft == false && moveInput > 0)
-        //{
-        //    Flip();
-        //}
-
-
     }
 
     // Update is called once per frame
@@ -57,7 +51,6 @@ public class Pumpkin_Movement_RB : MonoBehaviour
 
         if (Physics.Raycast(groundPoint.position, Vector3.down, out hit, .3f, whatIsGround))
         {
-            //Debug.Log("Grounded");
             isGrounded = true;
         }
         else
@@ -68,7 +61,6 @@ public class Pumpkin_Movement_RB : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             controller.velocity += new Vector3(0f, jumpHeight, 0f);
-            //playerJump.y += Mathf.Sasqrt(jumpHeight * -2.0f * gravityValue);
         }
 
         anim.SetBool("onGround", isGrounded);
@@ -83,12 +75,5 @@ public class Pumpkin_Movement_RB : MonoBehaviour
         }
 
     }
-
-    //void Flip()
-    //{
-    //    Vector3 Scaler = transform.localScale;
-    //    Scaler.x *= -1;
-    //    transform.localScale = Scaler;
-    //}
 
 }

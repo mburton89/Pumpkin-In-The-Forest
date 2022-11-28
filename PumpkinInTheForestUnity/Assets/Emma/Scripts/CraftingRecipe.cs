@@ -47,6 +47,10 @@ public class CraftingRecipe : ScriptableObject
             }
 
         }
+        else
+        {
+            Debug.Log("Insufficient item");
+        }
 
     }
 
