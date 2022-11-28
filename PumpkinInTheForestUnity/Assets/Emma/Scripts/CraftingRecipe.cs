@@ -28,6 +28,8 @@ public class CraftingRecipe : ScriptableObject
             }
         }
 
+        Debug.Log("trying to check craft");
+
         return craftable;
     }
 

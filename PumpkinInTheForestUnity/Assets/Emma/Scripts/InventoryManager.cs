@@ -78,6 +78,8 @@ public class InventoryManager : MonoBehaviour
 
         }
 
+        Debug.Log("counting items");
+
         return count;
     }
 

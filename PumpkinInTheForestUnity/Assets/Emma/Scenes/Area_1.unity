@@ -9644,8 +9644,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8827464136999121461, guid: c1e184c1ab53cc04c979b848e3ab7f22, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 8827464137115091555, guid: c1e184c1ab53cc04c979b848e3ab7f22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 1268221111}
+    - target: {fileID: 8827464137615367121, guid: c1e184c1ab53cc04c979b848e3ab7f22, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8827464137615367121, guid: c1e184c1ab53cc04c979b848e3ab7f22, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8827464137615367121, guid: c1e184c1ab53cc04c979b848e3ab7f22, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8827464137615367121, guid: c1e184c1ab53cc04c979b848e3ab7f22, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -16561,7 +16577,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b05ae17464aa084f9d994770b1f9326, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Items: []
+  ItemsList: []
   itemContent: {fileID: 1031145386}
   inventoryItem: {fileID: 7481751326551269031, guid: 139657c3395a471439bd24b53df8ec1c, type: 3}
 --- !u!4 &1268221112

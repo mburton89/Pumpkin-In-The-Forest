@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 4152591400943943047}
   - component: {fileID: 7963614437666567380}
   - component: {fileID: 7739530973078874181}
+  - component: {fileID: -7857446688940301525}
   m_Layer: 0
   m_Name: Sap
   m_TagString: Untagged
@@ -143,5 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108f93cf8d6ee5d4c8b2cc994191c1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 0}
+  Item: {fileID: 11400000, guid: fd00b9eadf1370c46aa468b2a69e9237, type: 2}
   isCollided: 0
+--- !u!114 &-7857446688940301525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6982554330197325337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760395ef4dc531b4994a06664ee0a82a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: fd00b9eadf1370c46aa468b2a69e9237, type: 2}
