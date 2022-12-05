@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-
+using TMPro;
+using System;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
@@ -11,6 +12,8 @@ public class InventoryManager : MonoBehaviour
     public Transform itemContent;
     public GameObject inventoryItem;
     //public Dictionary<int, List<Item>> craftList = new Dictionary<int, List<Item>>();
+
+    private TextMeshPro tempText;
 
     void Awake()
     {
@@ -35,14 +38,31 @@ public class InventoryManager : MonoBehaviour
             Destroy(item.gameObject);
         }
 
+        List<Item> ItemHolder = new List<Item>();
+
         foreach (var item in ItemsList)
         {
-            GameObject obj = Instantiate(inventoryItem, itemContent);
-            //var itemName  = obj.transform.Find("Item/ItemTitle").GetComponent<Text>();
-            var itemIcon = obj.transform.Find("Icon").GetComponent<Image>();
+            if (!ItemHolder.Contains(item))
+            {
+                GameObject obj = Instantiate(inventoryItem, itemContent);
+                //var itemName  = obj.transform.Find("Item/ItemTitle").GetComponent<Text>();
+                var itemIcon = obj.transform.Find("Icon").GetComponent<Image>();
+                var numberOfItemsText = obj.transform.Find("Count").GetComponent<TMP_Text>();
 
-            //itemName.text = item.title;
-            itemIcon.sprite = item.icon;
+                int numberOfItems = itemCount(item);
+
+                numberOfItemsText.SetText(numberOfItems == 1 ? "" : ("" + numberOfItems));
+
+                //itemName.text = item.title;
+                itemIcon.sprite = item.icon;
+
+                //temp.SetText("1");
+                //temp.transform.SetParent(obj.transform);
+
+                ItemHolder.Add(item);
+            }
+
+            
         }
 
     }

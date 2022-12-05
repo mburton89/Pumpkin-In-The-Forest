@@ -42,6 +42,7 @@ public class CraftingRecipe : ScriptableObject
 
             foreach (ItemAmount itemAmount in Materials)
             {
+
                 for (int i = itemAmount.amount; i > 0; i--)
                 {
                     inventoryManager.Remove(itemAmount.item);
