@@ -50,18 +50,6 @@ public class Pumpkin_Movement_RB : MonoBehaviour
 
         RaycastHit hit;
 
-        if (controller.velocity == Vector3.zero)
-        {
-            anim.SetBool("isWalking", false);
-            Debug.Log("not walk");
-        }
-        else
-        {
-            anim.SetBool("isWalking", true);
-            Debug.Log("walk");
-        }
-        
-        
         if (Physics.Raycast(groundPoint.position, Vector3.down, out hit, .3f, whatIsGround))
         {
             isGrounded = true;
@@ -74,6 +62,35 @@ public class Pumpkin_Movement_RB : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             controller.velocity += new Vector3(0f, jumpHeight, 0f);
+            anim.SetBool("isJumping", true);
+            Debug.Log("jump");
+        }
+        else 
+        {
+            anim.SetBool("isJumping", false);
+            Debug.Log("no jump");
+        }
+
+        //Debug.Log(controller.velocity.y);
+
+        //if (controller.velocity.y == 0)
+        {
+            //anim.SetBool("isJumping", false);
+        }
+        //else 
+        {
+            //anim.SetBool("isJumping", true);
+        }
+
+        if (controller.velocity.x == 0)
+        {
+            anim.SetBool("isWalking", false);
+            Debug.Log("not walk");
+        }
+        else
+        {
+            anim.SetBool("isWalking", true);
+            Debug.Log("walk");
         }
 
         //below code might be unnecessary, pineapple

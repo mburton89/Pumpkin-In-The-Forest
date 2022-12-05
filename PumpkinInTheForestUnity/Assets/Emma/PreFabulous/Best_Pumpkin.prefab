@@ -455,7 +455,7 @@ GameObject:
   - component: {fileID: 1672126756}
   - component: {fileID: 1672126754}
   - component: {fileID: 1672126755}
-  - component: {fileID: 996050013}
+  - component: {fileID: 1161446711}
   m_Layer: 0
   m_Name: Pumpkin Camera
   m_TagString: MainCamera
@@ -702,7 +702,7 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
---- !u!124 &996050013
+--- !u!124 &1161446711
 Behaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -730,7 +730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2357086405760054153
 Transform:
   m_ObjectHideFlags: 0
