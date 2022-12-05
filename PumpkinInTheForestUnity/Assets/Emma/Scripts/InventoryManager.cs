@@ -2,47 +2,67 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
-
+using TMPro;
+using System;
 public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager instance;
-    public List<Item> Items = new List<Item>();
+    public List<Item> ItemsList = new List<Item>();
 
     public Transform itemContent;
     public GameObject inventoryItem;
     //public Dictionary<int, List<Item>> craftList = new Dictionary<int, List<Item>>();
+
+    private TextMeshPro tempText;
 
     void Awake()
     {
         instance = this;
     }
 
-    // Update is called once per frame
     public void Add(Item item)
     {
-        Items.Add(item);
+        ItemsList.Add(item);
     }
 
     public void Remove(Item item)
     {
-        Items.Remove(item);
+        ItemsList.Remove(item);
     }
 
     public void ListItems()
     {
+        //destroys previous instances so no duplicates
         foreach (Transform item in itemContent)
         {
             Destroy(item.gameObject);
         }
 
-        foreach (var item in Items)
-        {
-            GameObject obj = Instantiate(inventoryItem, itemContent);
-            //var itemName  = obj.transform.Find("Item/ItemTitle").GetComponent<Text>();
-            var itemIcon = obj.transform.Find("Icon").GetComponent<Image>();
+        List<Item> ItemHolder = new List<Item>();
 
-            //itemName.text = item.title;
-            itemIcon.sprite = item.icon;
+        foreach (var item in ItemsList)
+        {
+            if (!ItemHolder.Contains(item))
+            {
+                GameObject obj = Instantiate(inventoryItem, itemContent);
+                //var itemName  = obj.transform.Find("Item/ItemTitle").GetComponent<Text>();
+                var itemIcon = obj.transform.Find("Icon").GetComponent<Image>();
+                var numberOfItemsText = obj.transform.Find("Count").GetComponent<TMP_Text>();
+
+                int numberOfItems = itemCount(item);
+
+                numberOfItemsText.SetText(numberOfItems == 1 ? "" : ("" + numberOfItems));
+
+                //itemName.text = item.title;
+                itemIcon.sprite = item.icon;
+
+                //temp.SetText("1");
+                //temp.transform.SetParent(obj.transform);
+
+                ItemHolder.Add(item);
+            }
+
+            
         }
 
     }
@@ -51,7 +71,7 @@ public class InventoryManager : MonoBehaviour
     {
         bool found = false;
 
-        foreach (var item in Items)
+        foreach (var item in ItemsList)
         {
 
             if (item.id == searchItem.id)
@@ -68,7 +88,7 @@ public class InventoryManager : MonoBehaviour
     {
         int count = 0;
 
-        foreach (var item in Items)
+        foreach (var item in ItemsList)
         {
 
             if (item.id == searchItem.id)
@@ -78,13 +98,9 @@ public class InventoryManager : MonoBehaviour
 
         }
 
+        Debug.Log("counting items");
+
         return count;
     }
-
-    //private void LoadDictionary()
-    //{
-    //    craftList.Add(11, );
-    
-    //}
 
 }

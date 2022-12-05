@@ -26,6 +26,7 @@ public class Pumpkin_Movement_RB : MonoBehaviour
     void Start()
     {
         controller = GetComponent<Rigidbody>();
+        //joint = GetComponent<FixedJoint>();
     }
 
     // Used with physics engine, can run several times per frame

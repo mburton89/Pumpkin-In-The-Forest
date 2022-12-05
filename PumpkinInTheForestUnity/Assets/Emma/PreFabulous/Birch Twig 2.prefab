@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760395ef4dc531b4994a06664ee0a82a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: 2ddd0c68f486b7c49865da429d3b1241, type: 2}
 --- !u!114 &4143932874557358446
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,5 +157,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108f93cf8d6ee5d4c8b2cc994191c1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Item: {fileID: 0}
+  Item: {fileID: 11400000, guid: 2ddd0c68f486b7c49865da429d3b1241, type: 2}
   isCollided: 0

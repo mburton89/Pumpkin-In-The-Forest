@@ -26,26 +26,39 @@ public class CraftingRecipe : ScriptableObject
             {
                 craftable = false;
             }
+            
         }
+
+        Debug.Log("trying to check craft");
 
         return craftable;
     }
 
     public void Craft(InventoryManager inventoryManager)
     {
-
+        Debug.Log("Entered craft");
         if (CanCraft(inventoryManager))
         {
 
             foreach (ItemAmount itemAmount in Materials)
             {
-                inventoryManager.Remove(itemAmount.item);
+
+                for (int i = itemAmount.amount; i > 0; i--)
+                {
+                    inventoryManager.Remove(itemAmount.item);
+                }
+
             }
             foreach (ItemAmount itemAmount in Results)
             {
                 inventoryManager.Add(itemAmount.item);
             }
+            Debug.Log("Successfully crafted");
 
+        }
+        else
+        {
+            Debug.Log("Insufficient item");
         }
 
     }
