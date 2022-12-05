@@ -26,7 +26,7 @@ public class Demo_CutsceneDialogue : MonoBehaviour
             if (showHiddenObjects)
             {
                 showHiddenObjects = false;  //This is done so this control structure only runs once when it is completed.
-                DisableObject.Instance.enableObject();
+                DisableObjectsManager.Instance.enableObjects();
             }
         }
     }
@@ -38,7 +38,7 @@ public class Demo_CutsceneDialogue : MonoBehaviour
         switch (dialogueNumber)
         {
             case 1:
-                DisableObject.Instance.disableObject();
+                DisableObjectsManager.Instance.disableObjects();
                 DialogueSystem.Instance.simulate();
                 DialogueSystem.Instance.showText("Hello? I-Is anybody there? Hello?", false, "Pumpkin");
                 DialogueSystem.Instance.showTextPlus("Where am I? How did I get here?", true, "Pumpkin", false);
@@ -48,10 +48,16 @@ public class Demo_CutsceneDialogue : MonoBehaviour
             case 2:
                 TimelineController.Instance.pauseTimeline();
 
+                //DialogueSystem.Instance.simulate();
+                //DialogueSystem.Instance.showText("I need to find something to help me get over this branch.", false, "Pumpkin");
+                //DialogueSystem.Instance.showText("...", false, "Pumpkin");
+                //DialogueSystem.Instance.showTextPlus("I should be able to push that rock over to the branch and use it to climb over it!", true, "Pumpkin", false);
+
                 DialogueSystem.Instance.simulate();
-                DialogueSystem.Instance.showText("I need to find something to help me get over this branch.", false, "Pumpkin");
+                DialogueSystem.Instance.showText("I need to find a way over this tree.", false, "Pumpkin");
                 DialogueSystem.Instance.showText("...", false, "Pumpkin");
-                DialogueSystem.Instance.showTextPlus("I should be able to push that rock over to the branch and use it to climb over it!", true, "Pumpkin", false);
+                DialogueSystem.Instance.showTextPlus("Maybe I could build something using items in the forest.", true, "Pumpkin", false);
+
                 startPlayer = true;
                 showHiddenObjects = true;
 
@@ -63,13 +69,15 @@ public class Demo_CutsceneDialogue : MonoBehaviour
 
         }
     }
-
+    
     public void activatePumpkin()
     {
         GameObject tempPlayer = FindObjectOfType<Pumpkin_Movement_RB>().gameObject;
         tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = true;
         tempPlayer.GetComponent<CapsuleCollider>().enabled = true;
         tempPlayer.GetComponent<Rigidbody>().useGravity = true;
+        tempPlayer.GetComponent<Animator>().enabled = false;
+        tempPlayer.GetComponent<SpriteRenderer>().enabled = true;
         print("This should be a success.");
     }
 
@@ -79,6 +87,8 @@ public class Demo_CutsceneDialogue : MonoBehaviour
         tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = false;
         tempPlayer.GetComponent<CapsuleCollider>().enabled = false;
         tempPlayer.GetComponent<Rigidbody>().useGravity = false;
+        tempPlayer.GetComponent<SpriteRenderer>().enabled = false;
+        tempPlayer.GetComponent<Animator>().enabled = true;
         print("This shuld be another success.");
     }
 

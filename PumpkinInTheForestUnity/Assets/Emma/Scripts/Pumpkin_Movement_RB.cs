@@ -53,12 +53,12 @@ public class Pumpkin_Movement_RB : MonoBehaviour
         if (controller.velocity == Vector3.zero)
         {
             anim.SetBool("isWalking", false);
-            Debug.Log("not walk");
+            //Debug.Log("not walk");
         }
         else
         {
             anim.SetBool("isWalking", true);
-            Debug.Log("walk");
+            //Debug.Log("walk");
         }
         
         

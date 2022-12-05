@@ -141,6 +141,10 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
                 DialogueSystem.Instance.showText("I'm not so sure about that. I do know that King Enigma has them collecting way more taxes this year than in earlier years.", false, Lesley);
                 DialogueSystem.Instance.showText("We are all worried about how we are going to make it through the winter with the food shortage and all that. Bradley might have more to tell us about that.", true, Lesley);
                 break;
+
+            case 10:
+                DialogueSystem.Instance.showText("I may be able to place something here.", true, Pumpkin);
+                break;
             }
     }
 }
