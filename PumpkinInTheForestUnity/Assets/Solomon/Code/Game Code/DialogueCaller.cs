@@ -6,7 +6,6 @@ public class DialogueCaller : MonoBehaviour
 {
 
     public int index;
-    public bool dontUseDialogue;
     public bool isTrigger;
     public bool useColliderTag;
     public string CollidersTag;
@@ -49,7 +48,7 @@ public class DialogueCaller : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!dontUseDialogue)
+        if (used == false)
         {
             if (useColliderTag)
             {
@@ -69,7 +68,7 @@ public class DialogueCaller : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!dontUseDialogue)
+        if (used == false)
         {
             if (useColliderTag)
             {

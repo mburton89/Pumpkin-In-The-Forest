@@ -173,7 +173,7 @@ public class DialogueSystem : MonoBehaviour
 
         if (canUpdate)
         {
-            print("currentBox:" + currentBox);
+           // print("currentBox:" + currentBox);
             if (pauseRecieve && (!showingDialogue))
             {
                 pauseRecieve = false;
@@ -188,7 +188,7 @@ public class DialogueSystem : MonoBehaviour
                 int startingNum = maxChars * currentBox;
                 //print("startingNum:" + startingNum + "mc:" + maxChars );
                 //int startingNum = 308 * currentBox;
-                print("Dialogue in que" + currentDialogue.Length);
+               // print("Dialogue in que" + currentDialogue.Length);
                 int number = (currentDialogue.Length) > (startingNum + maxChars) ? maxChars : (currentDialogue.Length - startingNum);
 
                 if (number == maxChars)
@@ -233,7 +233,7 @@ public class DialogueSystem : MonoBehaviour
 
                         if ((set == false) && (characterIcons != null))
                         {
-                            print("In progress");
+                            //print("In progress");
                         }
 
                         TextBox.GetComponent<Image>().sprite = tempSprite;
@@ -318,7 +318,7 @@ public class DialogueSystem : MonoBehaviour
                     //nextBox = true;
                     isDialogueFinished = false;
                 }
-                else if (backupDialogue == null)
+                else //if (backupDialogue == null)
                 {
                     print("Backup is empty");
                     tempRefresh = false;
@@ -360,7 +360,7 @@ public class DialogueSystem : MonoBehaviour
         else
         {
             //Pumpkin in the forest specific code.
-            if (isFinished() && activatePumpkinWhenFinished && pumpkinIsPaused)
+            if (isDialogueFinished && activatePumpkinWhenFinished && pumpkinIsPaused)
             {
                 activatePumpkin();
                 print("Pumpkin was activated.");
@@ -597,6 +597,11 @@ public class DialogueSystem : MonoBehaviour
         return isDialogueFinished;
     }
 
+    public bool getIsPaused()
+    {
+        return pumpkinIsPaused;
+    }
+
     public void waitForDialogue(bool wait)
     {
         waitForFinish = wait;
@@ -616,7 +621,7 @@ public class DialogueSystem : MonoBehaviour
         tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = true;
         tempPlayer.GetComponent<CapsuleCollider>().enabled = true;
         tempPlayer.GetComponent<Rigidbody>().useGravity = true;
-        print("This should be a success.");
+        //print("This should be a success.");
         pumpkinIsPaused = false;
     }
 
@@ -627,7 +632,7 @@ public class DialogueSystem : MonoBehaviour
         tempPlayer.GetComponent<CapsuleCollider>().enabled = false;
         tempPlayer.GetComponent<Rigidbody>().useGravity = false;
         tempPlayer.GetComponent<Rigidbody>().velocity = new Vector3(0f, 0f, 0f);
-        print("This shuld be another success.");
+        //print("This shuld be another success.");
         pumpkinIsPaused = true;
     }
 
