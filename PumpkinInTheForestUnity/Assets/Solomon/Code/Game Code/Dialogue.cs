@@ -5,6 +5,9 @@ using UnityEngine;
 public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
 {
     public static Dialogue Instance;
+
+    private bool ActivatePumpkin;
+
     //This allows the user to choose between dialogue in the script, or heir custom dialogue.
 
     private ThreeDDictionary<string, string, string> EditorDialogue_Dialogue_Name_Unknown;    //This custom datatype should allow dilaogue to be edited in the unity editor outside of visual studio.
@@ -33,11 +36,16 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
     void Start()
     {
         Instance = this;
+        ActivatePumpkin = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (ActivatePumpkin && DialogueSystem.Instance.isFinished() && DialogueSystem.Instance.getIsPaused())
+        {
+            DialogueSystem.Instance.activatePumpkin();
+        }
     }
 
     public void UseDefaultDialogue(bool use = true)
@@ -48,6 +56,8 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
     public void CallDialogue(int index, bool trigger = false, int subIndex = 0, bool defaultText = true)
     {
         DialogueSystem.Instance.setActivatePumpkinWhenFinished(true);
+        ActivatePumpkin = false;
+
 
         if (trigger)
         {
@@ -83,7 +93,7 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
 
                 case 3:   //Pumpkin makes it over the log.
                     DialogueSystem.Instance.deactivatePumpkin();
-                    DialogueSystem.Instance.showText("No turning back now. I hope I can find someone who can help me get home.", true, Pumpkin);
+                    DialogueSystem.Instance.showTextPlus("No turning back now. I hope I can find someone who can help me get home.", true, Pumpkin, true);
                     break;
 
                 case 4:   //Pumpkin meets Lesley
@@ -96,7 +106,7 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
                     DialogueSystem.Instance.showText("R-really? Thank you! Let's get going!", false, Pumpkin);
                     DialogueSystem.Instance.showText("Therein lies the issue. Seems the Order of Enigma has set up some kind of trap to keep critters from getting through to the Talkabout Tree.", false, Lesley);
                     DialogueSystem.Instance.showText("They used a bunch of vines and such to block the way with logs. ", false, Lesley);
-                    DialogueSystem.Instance.showText("Gonna need someone to hit the pullies in order to bring them down.", true, Lesley);
+                    DialogueSystem.Instance.showTextPlus("Gonna need someone to hit the pullies in order to bring them down.", true, Lesley, true);
                 break;
 
                 case 5:   //Lesley's dialogue while the pumpkin searches for the slingshot materials.
@@ -142,5 +152,7 @@ public class Dialogue : MonoBehaviour, ISerializationCallbackReceiver
                 DialogueSystem.Instance.showText("We are all worried about how we are going to make it through the winter with the food shortage and all that. Bradley might have more to tell us about that.", true, Lesley);
                 break;
             }
+
+        ActivatePumpkin = true;
     }
 }
