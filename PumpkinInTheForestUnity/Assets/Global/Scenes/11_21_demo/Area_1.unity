@@ -2561,7 +2561,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &240500320
 GameObject:
@@ -2895,7 +2895,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251123880}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 9, y: 6, z: 5}
@@ -2913,6 +2913,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LadderToSpawn: {fileID: 1783652523}
+  AlreadySpawned: 0
+  ownerHasInteraction: 1
   itemExample: {fileID: 11400000, guid: 56e0f87e521fa614c920e2b7a8c4b6d6, type: 2}
 --- !u!114 &251123884
 MonoBehaviour:
@@ -4664,6 +4666,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LadderToSpawn: {fileID: 2054283869}
+  AlreadySpawned: 1
+  ownerHasInteraction: 1
   itemExample: {fileID: 11400000, guid: 56e0f87e521fa614c920e2b7a8c4b6d6, type: 2}
 --- !u!114 &371132830
 MonoBehaviour:
@@ -6972,6 +6976,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 762886182, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 762886183, guid: 3191836588c57b949ae901fa2ccb8d2a, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -7580,6 +7588,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 4
+  dontUseDialogue: 0
   isTrigger: 1
   useColliderTag: 1
   CollidersTag: Player
@@ -8655,7 +8664,7 @@ Transform:
   - {fileID: 371132828}
   - {fileID: 251123881}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &665303806
 PrefabInstance:
@@ -16692,7 +16701,7 @@ MonoBehaviour:
     m_Events:
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1249234261}
           m_TargetAssemblyTypeName: Demo_CutsceneDialogue, Assembly-CSharp
           m_MethodName: democutscenedialogue
           m_Mode: 3
@@ -16706,7 +16715,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1249234261}
           m_TargetAssemblyTypeName: Demo_CutsceneDialogue, Assembly-CSharp
           m_MethodName: democutscenedialogue
           m_Mode: 3
@@ -16720,7 +16729,7 @@ MonoBehaviour:
           m_CallState: 2
     - m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 1249234261}
           m_TargetAssemblyTypeName: Demo_CutsceneDialogue, Assembly-CSharp
           m_MethodName: activatePumpkin
           m_Mode: 1
@@ -16781,7 +16790,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1191661581
 PrefabInstance:
@@ -17440,6 +17449,50 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246481710}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1249234260
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1249234262}
+  - component: {fileID: 1249234261}
+  m_Layer: 0
+  m_Name: CutsceneDialogue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1249234261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249234260}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d319ba9ae9234cd45bd1613d17df1302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1249234262
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249234260}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 110.53664, y: -203.99075, z: 250.42482}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1256817961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18320,6 +18373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 3
+  dontUseDialogue: 0
   isTrigger: 1
   useColliderTag: 1
   CollidersTag: Player
@@ -19497,6 +19551,7 @@ GameObject:
   - component: {fileID: 1389490527}
   - component: {fileID: 1389490530}
   - component: {fileID: 1389490529}
+  - component: {fileID: 1389490531}
   m_Layer: 0
   m_Name: squirrel_lesley
   m_TagString: Untagged
@@ -19598,6 +19653,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c27bc0f06d156447acbf41a9ec06a76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1389490531
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1389490526}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10.16, y: 12.729999, z: 10}
+  m_Center: {x: 0, y: 0.0000076293945, z: 0.0000076293945}
 --- !u!1001 &1393700728
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19972,37 +20040,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5543579858786528784, guid: a66d7fd17461c90469c7d3ddd6e44aad, type: 3}
   m_PrefabInstance: {fileID: 2130135270}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1406128707
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1406128708}
-  m_Layer: 0
-  m_Name: Solomons Stuff
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1406128708
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1406128707}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 117.67296, y: -306.31155, z: 448.23618}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1407511085
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26579,6 +26616,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 241687c0d310d66408c169053e6ac032, type: 3}
+--- !u!1 &1817972744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5248721050273811758, guid: 241687c0d310d66408c169053e6ac032, type: 3}
+  m_PrefabInstance: {fileID: 1817972743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1817972745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817972744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19a09997975b1a64f9c50f160b02e8e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1821992417
 GameObject:
   m_ObjectHideFlags: 0

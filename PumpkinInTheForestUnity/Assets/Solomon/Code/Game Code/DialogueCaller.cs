@@ -6,6 +6,7 @@ public class DialogueCaller : MonoBehaviour
 {
 
     public int index;
+    public bool dontUseDialogue;
     public bool isTrigger;
     public bool useColliderTag;
     public string CollidersTag;
@@ -17,10 +18,14 @@ public class DialogueCaller : MonoBehaviour
 
     private bool used;
 
+    private void Awake()
+    {
+    }
     // Start is called before the first frame update
     void Start()
     {
         used = false;
+
         //Dialogue.Instance.UseDefaultDialogue(true);  //This should be removed once dialogue can be edited in the unity editor.
     }
 
@@ -44,36 +49,42 @@ public class DialogueCaller : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (useColliderTag)
+        if (!dontUseDialogue)
         {
-            if (other.tag == CollidersTag)
+            if (useColliderTag)
+            {
+                if (other.tag == CollidersTag)
+                {
+                    Dialogue.Instance.CallDialogue(index, isTrigger);
+                    used = true;
+                }
+            }
+            else
             {
                 Dialogue.Instance.CallDialogue(index, isTrigger);
                 used = true;
             }
-        }
-        else
-        {
-            Dialogue.Instance.CallDialogue(index, isTrigger);
-            used = true;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (useColliderTag)
+        if (!dontUseDialogue)
         {
-            if (collision.gameObject.tag == CollidersTag)
+            if (useColliderTag)
             {
-                print("Entered");
+                if (collision.gameObject.tag == CollidersTag)
+                {
+                    print("Entered");
+                    Dialogue.Instance.CallDialogue(index, isTrigger);
+                    used = true;
+                }
+            }
+            else
+            {
                 Dialogue.Instance.CallDialogue(index, isTrigger);
                 used = true;
             }
-        }
-        else
-        {
-            Dialogue.Instance.CallDialogue(index, isTrigger);
-            used = true;
         }
     }
 

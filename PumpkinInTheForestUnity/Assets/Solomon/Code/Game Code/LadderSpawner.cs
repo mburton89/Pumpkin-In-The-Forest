@@ -5,24 +5,38 @@ using UnityEngine;
 public class LadderSpawner : MonoBehaviour
 {
     public GameObject LadderToSpawn;
+    public bool AlreadySpawned;
+    public bool ownerHasInteraction;
     bool isColliding;
+    bool isSpawned;
     public Item itemExample;
 
     // Start is called before the first frame update
     void Start()
     {
-        LadderToSpawn.SetActive(false);
+        LadderToSpawn.SetActive((AlreadySpawned) ? true : false);
+
+        isSpawned = (AlreadySpawned) ? true : false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isColliding && Input.GetKeyDown(InteractionManager.Instance.interactKey))
+        if (isColliding && Input.GetKeyDown(InteractionManager.Instance.interactKey) && !isSpawned)
         {
             if (InventoryManager.instance.containsItem(itemExample))
             {
                 LadderToSpawn.SetActive(true);
                 InventoryManager.instance.Remove(itemExample);
+
+                if (ownerHasInteraction)
+                {
+                    Destroy(gameObject.GetComponent<Interaction>());
+                }
+                
+                isSpawned = true;
+
             }
             print("Spawner Ladder");
         }
