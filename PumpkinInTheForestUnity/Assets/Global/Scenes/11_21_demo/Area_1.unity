@@ -7588,7 +7588,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 4
-  dontUseDialogue: 0
   isTrigger: 1
   useColliderTag: 1
   CollidersTag: Player
@@ -18401,7 +18400,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 3
-  dontUseDialogue: 0
   isTrigger: 1
   useColliderTag: 1
   CollidersTag: Player

@@ -72,7 +72,7 @@ public class Demo_CutsceneDialogue : MonoBehaviour
     
     public void activatePumpkin()
     {
-        GameObject tempPlayer = FindObjectOfType<Pumpkin_Movement_RB>().gameObject;
+        GameObject tempPlayer = FindObjectOfType<InteractionManager>().gameObject;
         tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = true;
         tempPlayer.GetComponent<CapsuleCollider>().enabled = true;
         tempPlayer.GetComponent<Rigidbody>().useGravity = true;
@@ -83,7 +83,7 @@ public class Demo_CutsceneDialogue : MonoBehaviour
 
     public void deactivatePumpkin()
     {
-        GameObject tempPlayer = FindObjectOfType<Pumpkin_Movement_RB>().gameObject;
+        GameObject tempPlayer = FindObjectOfType<InteractionManager>().gameObject;
         tempPlayer.GetComponent<Pumpkin_Movement_RB>().enabled = false;
         tempPlayer.GetComponent<CapsuleCollider>().enabled = false;
         tempPlayer.GetComponent<Rigidbody>().useGravity = false;
