@@ -4666,7 +4666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LadderToSpawn: {fileID: 2054283869}
-  AlreadySpawned: 1
+  AlreadySpawned: 0
   ownerHasInteraction: 1
   itemExample: {fileID: 11400000, guid: 56e0f87e521fa614c920e2b7a8c4b6d6, type: 2}
 --- !u!114 &371132830
@@ -19639,8 +19639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   displayOnMe: 1
-  useDefaultIcon: 1
-  myInteractionIcon: {fileID: 0}
+  useDefaultIcon: 0
+  myInteractionIcon: {fileID: 21300000, guid: f9d17fb9672940d40a230e5ad403cfa3, type: 3}
 --- !u!114 &1389490530
 MonoBehaviour:
   m_ObjectHideFlags: 0
