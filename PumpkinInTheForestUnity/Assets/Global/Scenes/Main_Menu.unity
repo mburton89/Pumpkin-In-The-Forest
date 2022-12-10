@@ -1124,8 +1124,8 @@ MonoBehaviour:
   - {fileID: 1204777283}
   - {fileID: 1104734094}
   scenesForButtons:
-  - Level_1
-  - Level_1
+  - Area_1
+  - Area_1
   - null
   sound: {fileID: 1504869518}
 --- !u!1 &1089106371

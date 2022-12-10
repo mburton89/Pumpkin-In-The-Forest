@@ -63,12 +63,12 @@ public class Pumpkin_Movement_RB : MonoBehaviour
         {
             controller.velocity += new Vector3(0f, jumpHeight, 0f);
             anim.SetBool("isJumping", true);
-            Debug.Log("jump");
+            //Debug.Log("jump");
         }
         else 
         {
             anim.SetBool("isJumping", false);
-            Debug.Log("no jump");
+            //Debug.Log("no jump");
         }
 
         //Debug.Log(controller.velocity.y);
@@ -85,12 +85,12 @@ public class Pumpkin_Movement_RB : MonoBehaviour
         if (controller.velocity.x == 0)
         {
             anim.SetBool("isWalking", false);
-            Debug.Log("not walk");
+           // Debug.Log("not walk");
         }
         else
         {
             anim.SetBool("isWalking", true);
-            Debug.Log("walk");
+           // Debug.Log("walk");
         }
 
         //below code might be unnecessary, pineapple

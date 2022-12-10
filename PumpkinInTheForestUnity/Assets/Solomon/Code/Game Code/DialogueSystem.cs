@@ -78,6 +78,9 @@ public class DialogueSystem : MonoBehaviour
 
     private bool pumpkinIsPaused = false;
     private bool activatePumpkinWhenFinished = true;
+    private bool simulated = false;
+    private bool checkKeyPress = false;
+
     /* The dialogue Box (Documentation)
      * The dialogue box variables are used to decide which and how many characters are being displayed to the screen at the current moment.
      * There is only one dialogue box as of right now.
@@ -253,9 +256,27 @@ public class DialogueSystem : MonoBehaviour
             canUpdate = false;
         }
 
+        checkKeyPress = false;
+
         if (Input.GetKeyDown(interactKey) || simulateButtonPress)
         {
             simulateButtonPress = false;
+
+            if (!simulated && !pumpkinIsPaused)
+            {
+                checkKeyPress = true;
+            }
+
+            /*
+            if ((!simulated))
+            {
+                if (!pumpkinIsPaused)
+                {
+                    specialCaseKeyPressCheck = true;
+
+                }
+            }
+            */
 
             if ((!canUpdate))
             {
@@ -354,14 +375,18 @@ public class DialogueSystem : MonoBehaviour
     public void showText(string text, bool pause = true, string titleText = " ")
     {
         //pumpkin in the forest specific code.
-        if (!pumpkinIsPaused)
+        if (simulated || checkKeyPress)
         {
-            isDialogueFinished = false;
-            deactivatePumpkin();
-            print("Pumpkin was de-activated.");
+            if (!pumpkinIsPaused)
+            {
+                isDialogueFinished = false;
+                deactivatePumpkin();
+                print("Pumpkin was de-activated.");
 
+            }
+            //
         }
-        //
+
 
         isDialogueFinished = false;
 
@@ -456,14 +481,18 @@ public class DialogueSystem : MonoBehaviour
 
     public void showTextWithImage(string text, bool pause = true, string titleText = " ", string characterImage = "Default")
     {
-        //pumpkin in the forest specific code.
-        if (!pumpkinIsPaused)
+        if (simulated == true)
         {
-            isDialogueFinished = false;
-            deactivatePumpkin();
-            print("Pumpkin was de-activated.");
+            if (!pumpkinIsPaused)
+            {
+                isDialogueFinished = false;
+                deactivatePumpkin();
+                print("Pumpkin was de-activated.");
 
+            }
         }
+        //pumpkin in the forest specific code.
+        
         //
 
 
@@ -564,6 +593,7 @@ public class DialogueSystem : MonoBehaviour
 
     public bool isFinished()
     {
+        simulated = false;
         return isDialogueFinished;
     }
 
@@ -576,6 +606,7 @@ public class DialogueSystem : MonoBehaviour
     public void simulate()
     {
         simulateButtonPress = true;
+        simulated = true;
     }
 
     //Pumpkin in the forest specific code.
